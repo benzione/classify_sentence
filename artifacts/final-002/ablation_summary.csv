@@ -1,0 +1,2 @@
+version,components,validation_exact_match,validation_p95_ms
+sparse-baseline,"word+char TF-IDF, balanced logistic root classifier, train-only cosine retrieval",0.13392857142857142,9.50047900005302

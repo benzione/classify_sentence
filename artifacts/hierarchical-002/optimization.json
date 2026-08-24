@@ -1,0 +1,177 @@
+[
+  {
+    "structure_weight": 0.3,
+    "field_weight": 0.8,
+    "canonical_exact_match": 0.16964285714285715,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.27416799988714
+  },
+  {
+    "structure_weight": 0.3,
+    "field_weight": 1.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.58021199933137
+  },
+  {
+    "structure_weight": 0.3,
+    "field_weight": 1.2,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.216133998095756
+  },
+  {
+    "structure_weight": 0.3,
+    "field_weight": 1.5,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.10763699907693
+  },
+  {
+    "structure_weight": 0.3,
+    "field_weight": 2.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 33.34994699980598
+  },
+  {
+    "structure_weight": 0.4,
+    "field_weight": 0.8,
+    "canonical_exact_match": 0.16964285714285715,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.795687002973864
+  },
+  {
+    "structure_weight": 0.4,
+    "field_weight": 1.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 37.43936600221787
+  },
+  {
+    "structure_weight": 0.4,
+    "field_weight": 1.2,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.62543199950596
+  },
+  {
+    "structure_weight": 0.4,
+    "field_weight": 1.5,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.075581003387924
+  },
+  {
+    "structure_weight": 0.4,
+    "field_weight": 2.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 37.00522900180658
+  },
+  {
+    "structure_weight": 0.5,
+    "field_weight": 0.8,
+    "canonical_exact_match": 0.16964285714285715,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.94584900222253
+  },
+  {
+    "structure_weight": 0.5,
+    "field_weight": 1.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.95397800038336
+  },
+  {
+    "structure_weight": 0.5,
+    "field_weight": 1.2,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.242810001567705
+  },
+  {
+    "structure_weight": 0.5,
+    "field_weight": 1.5,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.64448099859874
+  },
+  {
+    "structure_weight": 0.5,
+    "field_weight": 2.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.901598003169056
+  },
+  {
+    "structure_weight": 0.6,
+    "field_weight": 0.8,
+    "canonical_exact_match": 0.16964285714285715,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.46973099966999
+  },
+  {
+    "structure_weight": 0.6,
+    "field_weight": 1.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 37.89807000066503
+  },
+  {
+    "structure_weight": 0.6,
+    "field_weight": 1.2,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.904595999454614
+  },
+  {
+    "structure_weight": 0.6,
+    "field_weight": 1.5,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 34.66540000226814
+  },
+  {
+    "structure_weight": 0.6,
+    "field_weight": 2.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 35.70889900220209
+  },
+  {
+    "structure_weight": 0.7,
+    "field_weight": 0.8,
+    "canonical_exact_match": 0.16964285714285715,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 39.2778579989681
+  },
+  {
+    "structure_weight": 0.7,
+    "field_weight": 1.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 37.32901799958199
+  },
+  {
+    "structure_weight": 0.7,
+    "field_weight": 1.2,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.96909000063897
+  },
+  {
+    "structure_weight": 0.7,
+    "field_weight": 1.5,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 38.823574999696575
+  },
+  {
+    "structure_weight": 0.7,
+    "field_weight": 2.0,
+    "canonical_exact_match": 0.17857142857142858,
+    "root_entity_accuracy": 0.9642857142857143,
+    "p95_ms": 36.53831699921284
+  }
+]

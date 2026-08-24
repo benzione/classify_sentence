@@ -1,0 +1,145 @@
+entity_name,field_name,field_type,description
+CDR,ifc.ootb.CDR.callStatus,string,"Status of the call: ""Successful"", ""Failed"", ""Blocked"", or ""Redirected"""
+CDR,ifc.CDR.caseCode,string,Unique code identifying a specific case
+CDR,ifc.CDR.chatTopic,string,Topic or subject of discussion in the chat
+CDR,ifc.ootb.CDR.createDateTime,date,Date and time of record creation.
+CDR,ifc.ootb.CDR.direction,string,"Direction of the call (incoming, outgoing)"
+CDR,ifc.ootb.CDR.duration,integer,Duration of the communication in minutes. You can ask it For example: 1min -> 60
+CDR,ifc.CDR.emailSubject,string,Subject of the email communication
+CDR,ifc.ootb.CDR.endTime,date,Time when the communication ended
+CDR,ifc.ootb.CDR.hasContent,boolean,Indicates if the communication has content
+CDR,ifc.ootb.CDR.imei,string,this field is intended to store the IMEI number of the device who made a call.
+CDR,ifc.ootb.CDR.imei2,string,this field is intended to store the IMEI number of the device that is receiving the call. It serves the same purposes as the caller's IMEI but for the receiving side of the communication.
+CDR,ifc.ootb.CDR.imsi,string,"The IMSI that initiate the call as a sender. IMSI stands for International Mobile Subscriber Identity. It is a unique number associated with all cellular networks. It is used to identify the user of a cellular network and is a key part of any mobile network. The IMSI is stored on a SIM card and consists of up to 15 digits.The structure of the IMSI is as follows:Mobile Country Code (MCC): The first three digits represent the country code, identifying the country in which the carrier operates.Mobile Network Code (MNC): The next two or three digits identify the mobile network within the country.Mobile Subscriber Identification Number (MSIN): The remainder of the IMSI is a unique identifier for the subscriber within the network."
+CDR,ifc.ootb.CDR.imsi2,string,The IMSI that received the call as a receiver. IMSI is an International Mobile Subscriber Identity (IMSI) is a 15-digit number for every user in a Global System for Mobile communication (GSM). The IMSI is used by Mobile Network Operators (MNOs) and is an important part of the Subscriber Identity Module (SIM) profile.
+CDR,ifc.CDR.interceptionCriteria,string,Criteria for intercepting the communication
+CDR,ifc.CDR.interceptionFilter,string,Filter applied for interception
+CDR,ifc.ootb.CDR.ipAddress,string,IP address of the communication's  Origin 
+CDR,ifc.ootb.CDR.isAttachment,boolean,Indicates if the communication has an attachment
+CDR,ifc.CDR.isClassified,boolean,Indicates if the communication is classified
+CDR,ifc.ootb.CDR.msisdn,string,"MSISDN or phone number is the phone number associated with a mobile network subscriber as a sender. It is the globally unique number that identifies a subscriber's subscription in a mobile network, allowing them to make calls, send SMS, and utilize mobile data as sender.Purpose: The primary purpose of an MSISDN is to identify the subscriber's phone number for routing calls and messages. It is tied to the SIM card (Subscriber Identity Module) used in the mobile device.Components: An MSISDN includes the country code (CC), the national destination code (NDC), and the subscriber number (SN)."
+CDR,ifc.ootb.CDR.msisdn2,string,"MSISDN or phone number is the phone number associated with a mobile network subscriber as a receiver. It is the globally unique number that identifies a subscriber's subscription in a mobile network, allowing them to receive calls, receive SMS, and utilize mobile data as reciever.Purpose: The primary purpose of an MSISDN is to identify the subscriber's phone number for routing calls and messages. It is tied to the SIM card (Subscriber Identity Module) used in the mobile device.Components: An MSISDN includes the country code (CC), the national destination code (NDC), and the subscriber number (SN)."
+CDR,ifc.ootb.CDR.protocol,string,Communication protocol used like GSM or UMTS
+CDR,ifc.ootb.CDR.provider,string,Provider of the network service
+CDR,ifc.ootb.CDR.smsProtocol,string,Protocol used for SMS communication
+CDR,ifc.ootb.CDR.smsText,string,Text content of the SMS
+CDR,ifc.ootb.CDR.smsType,string,"Type of the SMS (e.g., text, binary)"
+CDR,ifc.ootb.CDR.startTime,date,Time when the communication started
+CDR,ifc.CDR.subcaseCode,string,Code for the subcase of a known case. Identify between this field and the ifc.CDR.caseCode
+CDR,ifc.CDR.targetCode,string,Code identifying the target of the communication
+CDR,ifc.ootb.CDR.technology,string,"Technology used in the communication, either: 2G,3G,4G,5G,other, WiFi"
+CDR,ifc.ootb.CDR.type,string,"Type of the communication, either: None-Call, Text,Voice, VoiceEdited, Web or Email. Text type is SMS, Voice type is Phone Calls"
+CDR,ifc.ootb.CDR.mainLanguage,string,Primary language of the communication content
+CDR,ifc.ootb.CDR.ipAddress2,string,IP address of the communication's  Destination
+CDR,ifc.ootb.CDR.originatorEmailAddress,string,Email address of the sender
+CDR,ifc.ootb.CDR.destinationEmailAddress,string,Email address of the recipient
+CDR,ifc.ootb.CDR.orignatorNetworkName,string,Name of the originator's network
+CDR,ifc.ootb.CDR.destinatorNetworkName,string,Name of the recipient's network
+Web Activity,ifc.ootb.Orbis.platform,string,the social network name form which the actor was collected (e.g. facebook instagram linkedin etc. )
+Web Activity,ifc.ootb.WebActivity.writerFullName,string,Full name of the writer who wrote the post
+Web Activity,ifc.ootb.WebActivity.writerUri,string,URI of the writers profile or content
+Web Activity,ifc.ootb.Orbis.updateDate,date,Date when the post was updated
+Web Activity,ifc.ootb.Orbis.collectDate,date,Date when the post data was collected
+Web Activity,ifc.ootb.Orbis.publishDate,date,Date when the post was published or created
+Web Activity,ifc.ootb.WebActivity.numberOfLikes,integer,Number of likes on the activity
+Web Activity,ifc.ootb.WebActivity.numberShares,integer,Number of times the activity was shared
+Web Activity,ifc.ootb.WebActivity.numberActivities,integer,"Count of all web activities (e.g. posts, reshares) nested under this web activity"
+Web Activity,ifc.ootb.WebActivity.numberTags,integer,Number of tags associated with the activity
+Web Activity,ifc.ootb.WebActivity.mainLanguage,string,Main language of the activity
+Web Activity,ifc.ootb.WebActivity.sentiment,string,sentiment of the text with the web activity (can be positive or negative)
+Web Activity,ifc.ootb.WebActivity.sentimentScore,float,a score between 0 (low) and 1 (high) of the sentiment analysis certainty of the text of the activity
+Web Activity,ifc.ootb.WebActivity.text,text,Text content of the web activity
+Web Activity,ifc.ootb.Orbis.creditCard,string,NER extraction of entities representing credit card information as extracted from ORBIS
+Web Activity,ifc.ootb.Orbis.email,string,NER extraction of entities representing emails as extracted from ORBIS
+Web Activity,ifc.ootb.Orbis.hashtags,string,Hashtags mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.ipAddress,string,IP address mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.mentions,string,a mention of a profile in social media usually with an @ sign
+Web Activity,ifc.ootb.Orbis.nationality,string,Nationality mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.phone,string,Phone number mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.religion,string,Religions mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.url,string,URL mentioned in the activity text
+Web Activity,ifc.ootb.Orbis.landmarks,string,names of landmarks found in the activity (e.g eiffel tower)
+Web Activity,ifc.ootb.WebActivity.title,string,Title of the web activity
+Investigation,ifc.core.description,text,Detailed summary of the investigation
+Investigation,ifc.core.dueTime,date,Scheduled completion time for the investigation
+Investigation,ifc.core.state,identifier,"Current state of the investigation. either ""open"" or ""close"""
+Investigation,ifc.core.priority,identifier,"Priority level of the investigation: ""regular"", ""medium"" or ""high"" in ascending order"
+Investigation,ifc.core.createtime,date,Creation time of the investigation record
+Insight,ifc.core.createtime,date,Time when the insight was first recorded or created
+Insight,text,text,Full text content of the insight. All the inputs of the insight
+Phone,ifc.ootb.Participant.isSuspicious,boolean,Boolean auto-generated Indicator showing if the identifier was defined as suspicious by the users or is it a SIM-Swapper (defined by the platform)
+Phone,ifc.ootb.Participant.targetName,string,this is target based SIGINT - (local police level) (unlike mass sigint in country level). Name of target like Yossi cohen
+Phone,ifc.ootb.Phone.IMEI,identifier,"International Mobile Equipment Identity of the phone. It is a unique 15-digit code. Each IMEI number is unique to a device and does not change, even if the SIM card is changed"
+Phone,ifc.ootb.Phone.IMSI,identifier,"IMSI stands for International Mobile Subscriber Identity. It is a unique number associated with all cellular networks. It is used to identify the user of a cellular network and is a key part of any mobile network. The IMSI is stored on a SIM card and consists of up to 15 digits.The structure of the IMSI is as follows:Mobile Country Code (MCC): The first three digits represent the country code, identifying the country in which the carrier operates.Mobile Network Code (MNC): The next two or three digits identify the mobile network within the country.Mobile Subscriber Identification Number (MSIN): The remainder of the IMSI is a unique identifier for the subscriber within the network."
+Phone,ifc.ootb.Phone.MSISDN,identifier,"MSISDN or phone number is the phone number associated with a mobile network subscriber. It is the globally unique number that identifies a subscriber's subscription in a mobile network, allowing them to make and receive calls, send and receive SMS, and utilize mobile data.Purpose: The primary purpose of an MSISDN is to identify the subscriber's phone number for routing calls and messages. It is tied to the SIM card (Subscriber Identity Module) used in the mobile device.Components: An MSISDN includes the country code (CC), the national destination code (NDC), and the subscriber number (SN)."
+Phone,ifc.ootb.Phone.title,string,Title or label associated with the phone (to display on system)
+Phone,ifc.ootb.Participant.tlidDominantLanguage,string,Dominant language for the Telecommunications Interception Directive
+Phone,ifc.ootb.Participant.aliasName,string,Alias name of the participant
+Phone,ifc.ootb.Participant.firstActiveDate,date,Date when the participant was first active on SIGINT
+Phone,ifc.ootb.Participant.lastActiveDate,date,Date when the participant was last active on SIGINT
+Phone,ifc.Phone.accessCallingNumber,string,Calling number used to access the phone
+Phone,ifc.ootb.Participant.deviceName,string,Name of the device used by the participant
+Phone,ifc.ootb.Participant.isTarget,boolean,"Indicates whether the identifier defined as a target, meaning content is visible (Under a court order)"
+Phone,ifc.Phone.type,string,"Type of phone (either foreign, mobile, or landline)"
+Phone,ifc.ootb.Phone.IMSI.objectID,identifier,Object ID associated with the phone's IMSI
+Web Actor,ifc.ootb.Orbis.sourceUrl,string,Source URL from where the web actors data is retrieved
+Web Actor,ifc.ootb.Orbis.collectDate,date,Date when the web actor was last collected 
+Web Actor,ifc.ootb.Orbis.publishDate,date,Date when the web actor was published or created in the social network
+Web Actor,ifc.ootb.Orbis.platform,string,the social network name form which the actor was collected (e.g. facebook instagram linkedin etc.) 
+Web Actor,ifc.ootb.WebActor.title,string,name of the web actor
+Web Actor,ifc.ootb.WebActor.uri,string,the url identifying the web actor within the social network
+Web Actor,ifc.ootb.WebActor.sentiment,string,sentiment of the text field within the webactor  (can be positive or negative)
+Web Actor,ifc.ootb.WebActor.sentimentScore,float,a score between 0 (low) and 1 (high) of the sentiment analysis certainty of  he text field within the webactor  
+Web Actor,ifc.ootb.WebActor.numberOfFriends,integer,Number of friends or connections the web actor has
+Web Actor,ifc.ootb.WebActor.numberActivities,integer,Total number of activities the web actor has performed
+Web Actor,ifc.ootb.WebActor.numberPagesLiked,integer,Number of pages or profiles the actor has liked
+Web Actor,ifc.ootb.WebActor.educationalInstitution,string,Educational institutions associated with the actor
+Web Actor,ifc.ootb.WebActor.jobCompanyName,string,Names of companies where the actor is or has been employed
+Web Actor,ifc.ootb.WebActor.leadingEmail,string,Primary email address associated with the actor
+Web Actor,ifc.ootb.WebActor.homepage,string,URL which the web actor published as his home page
+Web Actor,ifc.ootb.WebActor.about,text,the description of the web actor as he wrote on himself inside his social network profile
+Web Actor,ifc.ootb.WebActor.birthDate,date,Birth date of the individual web actor
+Web Actor,ifc.ootb.WebActor.gender,string,Gender of the web actor
+Web Actor,ifc.ootb.WebActor.firstName,string,First name of the individual web actor
+Web Actor,ifc.ootb.WebActor.lastName,string,Last name of the individual web actor
+Web Actor,ifc.ootb.WebActor.leadingPhone,string,Primary phone number of the actor
+Web Actor,ifc.ootb.WebActor.numberOfFollowers,integer,Number of followers the actor has
+Web Actor,ifc.ootb.WebActor.numberOfFollowing,integer,Number of web actors the actor is following
+Report,ifc.core.createtime,date,Creation time of the report
+Report,ifc.core.updatetime,date,Last updated time for the report
+Report,text,text,Full text content of the report
+Person,ifc.Person.passport,string,Passport number of the individual
+Person,ifc.Person.firstName,string,First name of the individual
+Person,ifc.Person.lastName,string,Last name of the individual
+Person,ifc.Person.gender,string,Gender of the individual
+Person,ifc.Person.birthDate,date,Birth date of the individual
+Person,ifc.Person.occupation,string,Occupation or profession of the individual
+EVisa Request,ifc.EVisaRequest.title,string,Title or formal designation of the eVisa applicant
+EVisa Request,ifc.EVisaRequest.countryBeforeArrivalName,string,Country the applicant is travelling from
+EVisa Request,ifc.EVisaRequest.countryAfterDepartureName,string,Country the applicant intends to travel to after departure
+EVisa Request,ifc.EVisaRequest.arrivalDate,date,Scheduled date of arrival in the destination country
+EVisa Request,ifc.EVisaRequest.departureDate,date,Scheduled departure date from the destination country
+EVisa Request,ifc.EVisaRequest.state,string,Current state or status of the eVisa application
+EVisa Request,ifc.EVisaRequest.demandDate,date,Date when the eVisa request was made
+EVisa Request,ifc.EVisaRequest.priority,boolean,Priority level of the eVisa application
+EVisa Request,ifc.EVisaRequest.previousStayinDate,date,"Date of previous stays, if any, in the destination country"
+EVisa Request,ifc.EVisaRequest.localAddress,string,Local address in the destination country
+EVisa Request,ifc.EVisaRequest.stayinDuration,integer,Duration of the intended stay on the eVisa
+EVisa Request,ifc.EVisaRequest.travelPurpose,string,Primary purpose of travel
+EVisa Request,ifc.EVisaRequest.citizenshipCountryName,string,Country of citizenship of the eVisa applicant
+EVisa Request,ifc.EVisaRequest.otherCitizenshipCountryName,string,"For applicant that has more than one citizenship, this property helds the additional citizenship"
+EVisa Request,ifc.EVisaRequest.fullName,string,Full legal name of the eVisa applicant
+EVisa Request,ifc.EVisaRequest.email,string,Email address of the eVisa applicant
+EVisa Request,ifc.EVisaRequest.contacts,string,Contact details for the eVisa applicant
+EVisa Request,ifc.EVisaRequest.occupation,string,Occupation or job title of the eVisa applicant
+EVisa Request,ifc.EVisaRequest.documentType,string,Type of travel document used for the eVisa application
+EVisa Request,ifc.EVisaRequest.documentNumber,string,Document number of the travel document
+EVisa Request,ifc.EVisaRequest.documentDeliveryDate,date,Date when the travel document was issued
+EVisa Request,ifc.EVisaRequest.documentExpiryDate,date,Expiration date of the travel document
+EVisa Request,ifc.EVisaRequest.documentIssuer,string,Authority that issued the travel document
+EVisa Request,ifc.EVisaRequest.documentIssuerCountryName,string,Country of the authority that issued the travel document
+EVisa Request,ifc.EVisaRequest.visaIssueDate,date,Date when the eVisa was issued
+EVisa Request,ifc.EVisaRequest.visaExpirationDate,date,Expiration date of the issued eVisa
+EVisa Request,ifc.EVisaRequest.visaType,string,Type or category of the issued eVisa
+EVisa Request,ifc.EVisaRequest.visaDuration,integer,Validity duration of the eVisa from the date of issue
+EVisa Request,ifc.EVisaRequest.visaEntries,string,Number of entries allowed on the eVisa

@@ -1,0 +1,19 @@
+.DS_Store
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Keep only the incumbent and current champion reports in version control.
+artifacts/*
+!artifacts/final-002/
+!artifacts/hierarchical-002/
+artifacts/*/models/
+artifacts/*/candidates/
+artifacts/hierarchical-002/predictions/test_determinism_a.csv
+artifacts/hierarchical-002/predictions/test_pre_vectorization.csv
+
+# Local environments and secrets.
+.env
+.env.*
+.venv/
+venv/

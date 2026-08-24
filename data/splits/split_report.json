@@ -1,0 +1,43 @@
+{
+  "counts": {
+    "train": 520,
+    "validation": 112,
+    "test": 112
+  },
+  "root_entities": {
+    "train": {
+      "CDR": 163,
+      "EVisa Request": 6,
+      "Insight": 39,
+      "Investigation": 51,
+      "Person": 37,
+      "Phone": 59,
+      "Report": 45,
+      "Web Activity": 68,
+      "Web Actor": 52
+    },
+    "validation": {
+      "CDR": 35,
+      "EVisa Request": 2,
+      "Insight": 9,
+      "Investigation": 14,
+      "Person": 8,
+      "Phone": 17,
+      "Report": 13,
+      "Web Activity": 9,
+      "Web Actor": 5
+    },
+    "test": {
+      "CDR": 26,
+      "EVisa Request": 1,
+      "Insight": 7,
+      "Investigation": 8,
+      "Person": 7,
+      "Phone": 13,
+      "Report": 13,
+      "Web Activity": 24,
+      "Web Actor": 13
+    }
+  },
+  "objective": 0.08125116944740589
+}
