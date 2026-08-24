@@ -30,6 +30,9 @@ python scripts/run_pipeline.py --mode infer --run-id baseline-001 --question "Sh
 python scripts/optimize_hierarchy.py --run-id hierarchical-002
 python scripts/run_pipeline.py --mode benchmark --run-id hierarchical-002
 python scripts/run_pipeline.py --mode evaluate --run-id hierarchical-002
+
+# Root-routed independent and classifier-chain component experts.
+python scripts/optimize_experts.py --run-id root-experts-003
 ```
 
 The split prephase is deterministic and refuses to replace an existing split;
@@ -50,6 +53,13 @@ are static schema knowledge; they are not fitted from held-out queries.
 match is 17.86%, root accuracy is 92.86%, schema validity is 100%, and measured
 p95 latency is approximately 10 ms. Large Joblib model files are intentionally
 ignored by Git and can be regenerated from the tracked training split.
+
+The root-expert experiment trains separate component models for sufficiently
+represented roots and supports both independent and classifier-chain field
+heads. Validation selected the shared fallback: active experts did not improve
+exact match, classifier chains were substantially slower, and the expert bundle
+was larger. `root-experts-003` records this negative result without replacing
+the champion.
 
 `artifacts/<run-id>/errors.csv` identifies missed templates, fields, relations,
 operators, and values for targeted future improvements. Evaluation reports and

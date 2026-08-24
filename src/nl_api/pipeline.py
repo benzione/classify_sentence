@@ -9,6 +9,7 @@ from typing import Any
 
 import joblib
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.multioutput import ClassifierChain
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -26,6 +27,23 @@ class Prediction:
     request: ApiRequest
     confidence: float
     diagnostics: dict[str, Any]
+
+
+@dataclass
+class ComponentExpert:
+    """A component model fitted only on one root entity's training rows."""
+    entity: str
+    row_count: int
+    vectorizer: FeatureUnion
+    field_binarizer: MultiLabelBinarizer
+    field_classifier: OneVsRestClassifier
+    count_classifier: Any
+    relation_classifier: Any
+    boolean_classifier: Any
+    chain_classifier: ClassifierChain | None
+    chain_fields: tuple[str, ...]
+    constant_fields: tuple[str, ...]
+    field_support: dict[str, int]
 
 
 class LocalParser:
@@ -49,6 +67,11 @@ class LocalParser:
         hierarchy_structure_weight: float = 0.0,
         hierarchy_field_weight: float = 0.0,
         hierarchy_field_mode: str = "mean_probability",
+        root_experts: dict[str, ComponentExpert] | None = None,
+        expert_min_rows: int = 10**9,
+        expert_min_field_support: int = 1,
+        expert_fallback: str = "rules",
+        expert_field_model: str = "classifier_chain",
     ):
         self.schema, self.vectorizer, self.classifier, self.train_rows = schema, vectorizer, classifier, train_rows
         self.field_binarizer, self.field_classifier, self.field_operators = field_binarizer, field_classifier, field_operators
@@ -60,6 +83,11 @@ class LocalParser:
         self.hierarchy_structure_weight = hierarchy_structure_weight
         self.hierarchy_field_weight = hierarchy_field_weight
         self.hierarchy_field_mode = hierarchy_field_mode
+        self.root_experts = root_experts or {}
+        self.expert_min_rows = expert_min_rows
+        self.expert_min_field_support = expert_min_field_support
+        self.expert_fallback = expert_fallback
+        self.expert_field_model = expert_field_model
         self.train_matrix = vectorizer.transform([r["question_normalized"] for r in train_rows])
         self.train_requests = [ApiRequest.from_dict(json.loads(r["target_json"])) for r in train_rows]
         self.train_components = [decompose(request) for request in self.train_requests]
@@ -90,6 +118,11 @@ class LocalParser:
         hierarchy_structure_weight: float = 0.0,
         hierarchy_field_weight: float = 0.0,
         hierarchy_field_mode: str = "mean_probability",
+        expert_min_rows: int = 10**9,
+        expert_min_field_support: int = 1,
+        expert_fallback: str = "rules",
+        expert_field_model: str = "classifier_chain",
+        train_root_experts: bool = False,
     ) -> "LocalParser":
         if len({r["root_entity"] for r in rows}) < 2: raise ValueError("training split needs at least two root entities")
         vectorizer = cls.build_vectorizer(); matrix = vectorizer.fit_transform([r["question_normalized"] for r in rows])
@@ -110,6 +143,7 @@ class LocalParser:
         count_classifier = cls._fit_head(matrix, [row["filter_count"] for row in rows])
         relation_classifier = cls._fit_head(matrix, [row["has_relation"] for row in rows])
         boolean_classifier = cls._fit_head(matrix, [row["has_or"] for row in rows])
+        root_experts = cls._fit_root_experts(rows) if train_root_experts else {}
         operators = {field: [operator for operator, _ in counts.most_common()] for field, counts in field_operators.items()}
         slot_texts: list[str] = []; slot_fields: list[str] = []
         for row in rows:
@@ -125,8 +159,60 @@ class LocalParser:
             operators, rows, slot_vectorizer, slot_classifier, slot_threshold,
             slot_mode, count_classifier, relation_classifier, boolean_classifier,
             hierarchy_structure_weight, hierarchy_field_weight,
-            hierarchy_field_mode,
+            hierarchy_field_mode, root_experts, expert_min_rows,
+            expert_min_field_support, expert_fallback, expert_field_model,
         )
+
+    @classmethod
+    def _fit_root_experts(cls, rows: list[dict]) -> dict[str, ComponentExpert]:
+        grouped: dict[str, list[dict]] = defaultdict(list)
+        for row in rows:
+            grouped[row["root_entity"]].append(row)
+        experts: dict[str, ComponentExpert] = {}
+        for entity, entity_rows in grouped.items():
+            if len(entity_rows) < 2:
+                continue
+            vectorizer = cls.build_vectorizer()
+            matrix = vectorizer.fit_transform([row["question_normalized"] for row in entity_rows])
+            label_sets: list[list[str]] = []
+            support: Counter[str] = Counter()
+            for row in entity_rows:
+                component = decompose(ApiRequest.from_dict(json.loads(row["target_json"])))
+                fields = sorted({item.field for item in component.filters})
+                label_sets.append(fields)
+                support.update(fields)
+            binarizer = MultiLabelBinarizer()
+            targets = binarizer.fit_transform(label_sets)
+            field_classifier = OneVsRestClassifier(LogisticRegression(C=1.0, class_weight="balanced", max_iter=2000, random_state=20260824))
+            field_classifier.fit(matrix, targets)
+            chain_fields = tuple(sorted(
+                (field for field, count in support.items() if count < len(entity_rows)),
+                key=lambda field: (-support[field], field),
+            ))
+            chain_classifier = None
+            if chain_fields:
+                chain_targets = np.asarray([[field in fields for field in chain_fields] for fields in label_sets], dtype=int)
+                chain_classifier = ClassifierChain(
+                    LogisticRegression(C=1.0, class_weight="balanced", max_iter=2000, random_state=20260824),
+                    order=list(range(len(chain_fields))),
+                    random_state=20260824,
+                )
+                chain_classifier.fit(matrix, chain_targets)
+            experts[entity] = ComponentExpert(
+                entity=entity,
+                row_count=len(entity_rows),
+                vectorizer=vectorizer,
+                field_binarizer=binarizer,
+                field_classifier=field_classifier,
+                count_classifier=cls._fit_head(matrix, [row["filter_count"] for row in entity_rows]),
+                relation_classifier=cls._fit_head(matrix, [row["has_relation"] for row in entity_rows]),
+                boolean_classifier=cls._fit_head(matrix, [row["has_or"] for row in entity_rows]),
+                chain_classifier=chain_classifier,
+                chain_fields=chain_fields,
+                constant_fields=tuple(sorted(field for field, count in support.items() if count == len(entity_rows))),
+                field_support=dict(support),
+            )
+        return experts
 
     @staticmethod
     def _fit_head(matrix: Any, labels: list[Any]) -> Any:
@@ -138,7 +224,7 @@ class LocalParser:
         return model
 
     def dump(self, path: str) -> None:
-        joblib.dump({"schema": self.schema, "vectorizer": self.vectorizer, "classifier": self.classifier, "field_binarizer": self.field_binarizer, "field_classifier": self.field_classifier, "field_operators": self.field_operators, "train_rows": self.train_rows, "slot_vectorizer": self.slot_vectorizer, "slot_classifier": self.slot_classifier, "slot_threshold": self.slot_threshold, "slot_mode": self.slot_mode, "count_classifier": self.count_classifier, "relation_classifier": self.relation_classifier, "boolean_classifier": self.boolean_classifier, "hierarchy_structure_weight": self.hierarchy_structure_weight, "hierarchy_field_weight": self.hierarchy_field_weight, "hierarchy_field_mode": self.hierarchy_field_mode, "training_fingerprint": self._train_fingerprint()}, path)
+        joblib.dump({"schema": self.schema, "vectorizer": self.vectorizer, "classifier": self.classifier, "field_binarizer": self.field_binarizer, "field_classifier": self.field_classifier, "field_operators": self.field_operators, "train_rows": self.train_rows, "slot_vectorizer": self.slot_vectorizer, "slot_classifier": self.slot_classifier, "slot_threshold": self.slot_threshold, "slot_mode": self.slot_mode, "count_classifier": self.count_classifier, "relation_classifier": self.relation_classifier, "boolean_classifier": self.boolean_classifier, "hierarchy_structure_weight": self.hierarchy_structure_weight, "hierarchy_field_weight": self.hierarchy_field_weight, "hierarchy_field_mode": self.hierarchy_field_mode, "root_experts": self.root_experts, "expert_min_rows": self.expert_min_rows, "expert_min_field_support": self.expert_min_field_support, "expert_fallback": self.expert_fallback, "expert_field_model": self.expert_field_model, "training_fingerprint": self._train_fingerprint()}, path)
 
     @classmethod
     def load(cls, path: str) -> "LocalParser":
@@ -154,6 +240,11 @@ class LocalParser:
             saved.get("hierarchy_structure_weight", 0.0),
             saved.get("hierarchy_field_weight", 0.0),
             saved.get("hierarchy_field_mode", "mean_probability"),
+            saved.get("root_experts"), saved.get("expert_min_rows", 10**9),
+            saved.get("expert_min_field_support", 1),
+            # Models saved before root experts existed used the shared hierarchy.
+            saved.get("expert_fallback", "shared"),
+            saved.get("expert_field_model", "classifier_chain"),
         )
 
     def _train_fingerprint(self) -> str:
@@ -168,12 +259,35 @@ class LocalParser:
         similarities = cosine_similarity(query, self.train_matrix).ravel()
         # Only templates whose root matches the classifier may decode. This makes root and AST constraints explicit.
         compatible = [i for i, request in enumerate(self.train_requests) if request.entity_type == root]
-        hierarchy_scores = self._hierarchy_scores(query, compatible)
+        hierarchy_scores, decoder = self._routed_hierarchy_scores(normalized, query, root, compatible)
         best = max(compatible, key=lambda index: similarities[index] + hierarchy_scores.get(index, 0.0)) if compatible else int(similarities.argmax())
         request = self._assemble(question, root, self.train_requests[best])
         self.schema.validate(request)
         confidence = float(0.65 * class_prob.get(root, 0.0) + 0.35 * max(similarities[best], 0.0))
-        return Prediction(request, confidence, {"root_probabilities": class_prob, "retrieved_row_id": self.train_rows[best]["row_id"], "retrieval_score": float(similarities[best]), "hierarchy_score": round(hierarchy_scores.get(best, 0.0), 12)})
+        return Prediction(request, confidence, {"root_probabilities": class_prob, "retrieved_row_id": self.train_rows[best]["row_id"], "retrieval_score": float(similarities[best]), "hierarchy_score": round(hierarchy_scores.get(best, 0.0), 12), "component_decoder": decoder})
+
+    def _routed_hierarchy_scores(self, normalized: str, query: Any, root: str, candidates: list[int]) -> tuple[dict[int, float], str]:
+        expert = self.root_experts.get(root)
+        if expert is not None and expert.row_count >= self.expert_min_rows:
+            expert_query = expert.vectorizer.transform([normalized])
+            if self.expert_field_model == "classifier_chain" and expert.chain_classifier is not None:
+                chain_probabilities = np.asarray(expert.chain_classifier.predict_proba(expert_query))[0]
+                field_prob = {field: 1.0 for field in expert.constant_fields}
+                field_prob.update(zip(expert.chain_fields, (float(value) for value in chain_probabilities)))
+            else:
+                field_prob = dict(zip(expert.field_binarizer.classes_, expert.field_classifier.predict_proba(expert_query)[0]))
+            scores = self._component_scores(
+                candidates,
+                self._class_probability(expert.count_classifier, expert_query),
+                self._class_probability(expert.relation_classifier, expert_query),
+                self._class_probability(expert.boolean_classifier, expert_query),
+                field_prob,
+                expert.field_support,
+            )
+            return scores, f"root_expert:{root}"
+        if self.expert_fallback == "shared":
+            return self._hierarchy_scores(query, candidates), "shared_model"
+        return {}, "schema_rules"
 
     @staticmethod
     def _class_probability(model: Any, matrix: Any) -> dict[Any, float]:
@@ -193,8 +307,21 @@ class LocalParser:
             decision = np.asarray(query @ self._field_coefficients.T).ravel() + self._field_intercepts
             probabilities = 1.0 / (1.0 + np.exp(-np.clip(decision, -40.0, 40.0)))
         field_prob = dict(zip(self.field_binarizer.classes_, probabilities))
+        return self._component_scores(candidates, count_prob, relation_prob, boolean_prob, field_prob)
+
+    def _component_scores(
+        self,
+        candidates: list[int],
+        count_prob: dict[Any, float],
+        relation_prob: dict[Any, float],
+        boolean_prob: dict[Any, float],
+        field_prob: dict[str, float],
+        field_support: dict[str, int] | None = None,
+    ) -> dict[int, float]:
         predicted_count = max(count_prob, key=count_prob.get) if count_prob else 0
         candidate_vocabulary = {item.field for index in candidates for item in self.train_components[index].filters}
+        if field_support is not None:
+            candidate_vocabulary = {field for field in candidate_vocabulary if field_support.get(field, 0) >= self.expert_min_field_support}
         predicted_fields = {
             field for field, _ in sorted(
                 ((field, field_prob.get(field, 0.0)) for field in candidate_vocabulary),
@@ -210,11 +337,12 @@ class LocalParser:
                 + boolean_prob.get(component.has_or, 0.0)
             ) / 3.0
             fields = {item.field for item in component.filters}
+            scored_fields = fields if field_support is None else {field for field in fields if field in candidate_vocabulary}
             if self.hierarchy_field_mode == "topk_f1":
-                denominator = len(fields) + len(predicted_fields)
-                field_score = 2.0 * len(fields & predicted_fields) / denominator if denominator else 1.0
+                denominator = len(scored_fields) + len(predicted_fields)
+                field_score = 2.0 * len(scored_fields & predicted_fields) / denominator if denominator else 0.0
             else:
-                field_score = sum(float(field_prob.get(field, 0.0)) for field in fields) / max(len(fields), 1)
+                field_score = sum(float(field_prob.get(field, 0.0)) for field in scored_fields) / max(len(scored_fields), 1)
             result[index] = self.hierarchy_structure_weight * shape_score + self.hierarchy_field_weight * field_score
         return result
 

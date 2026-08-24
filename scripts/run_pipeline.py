@@ -59,6 +59,10 @@ def main() -> None:
     parser.add_argument("--hierarchy-structure-weight", type=float, default=0.0)
     parser.add_argument("--hierarchy-field-weight", type=float, default=0.0)
     parser.add_argument("--hierarchy-field-mode", choices=("mean_probability", "topk_f1"), default="mean_probability")
+    parser.add_argument("--expert-min-rows", type=int, default=10**9)
+    parser.add_argument("--expert-min-field-support", type=int, default=1)
+    parser.add_argument("--expert-fallback", choices=("rules", "shared"), default="rules")
+    parser.add_argument("--expert-field-model", choices=("classifier_chain", "independent"), default="classifier_chain")
     args = parser.parse_args()
     artifact, model_path = locations(args.run_id)
     if args.mode == "train":
@@ -68,10 +72,14 @@ def main() -> None:
             schema, train, args.slot_threshold, args.slot_mode,
             args.hierarchy_structure_weight, args.hierarchy_field_weight,
             args.hierarchy_field_mode,
+            args.expert_min_rows, args.expert_min_field_support,
+            args.expert_fallback,
+            args.expert_field_model,
+            args.expert_min_rows < 10**9,
         )
         model_path.parent.mkdir(parents=True, exist_ok=True); model.dump(str(model_path))
         artifact.mkdir(parents=True, exist_ok=True)
-        (artifact / "config.json").write_text(json.dumps({"model": "word+char TF-IDF / balanced LogisticRegression / hierarchical schema-constrained retrieval", "canonicalization": "sort implicit root AND filters only", "slot_mode": args.slot_mode, "slot_threshold": args.slot_threshold, "hierarchy_structure_weight": args.hierarchy_structure_weight, "hierarchy_field_weight": args.hierarchy_field_weight, "hierarchy_field_mode": args.hierarchy_field_mode, "training_row_count": len(train), "training_row_ids": [row["row_id"] for row in train]}, indent=2), encoding="utf-8")
+        (artifact / "config.json").write_text(json.dumps({"model": "root-routed component experts with schema/rule backoff", "canonicalization": "sort implicit root AND filters only", "slot_mode": args.slot_mode, "slot_threshold": args.slot_threshold, "hierarchy_structure_weight": args.hierarchy_structure_weight, "hierarchy_field_weight": args.hierarchy_field_weight, "hierarchy_field_mode": args.hierarchy_field_mode, "expert_min_rows": args.expert_min_rows, "expert_min_field_support": args.expert_min_field_support, "expert_fallback": args.expert_fallback, "expert_field_model": args.expert_field_model, "expert_training_rows": {entity: expert.row_count for entity, expert in model.root_experts.items()}, "training_row_count": len(train), "training_row_ids": [row["row_id"] for row in train]}, indent=2), encoding="utf-8")
         metrics = evaluate(model, validation, artifact / "predictions" / "validation.csv")
         (artifact / "metrics.json").write_text(json.dumps({"validation": metrics}, indent=2), encoding="utf-8")
         write_metric_csv(artifact / "metrics.csv", metrics)

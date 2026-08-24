@@ -7,6 +7,7 @@ __pycache__/
 artifacts/*
 !artifacts/final-002/
 !artifacts/hierarchical-002/
+!artifacts/root-experts-003/
 artifacts/*/models/
 artifacts/*/candidates/
 artifacts/hierarchical-002/predictions/test_determinism_a.csv
