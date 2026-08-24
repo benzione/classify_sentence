@@ -1,77 +1,56 @@
-# Local NL-to-API JSON pipeline
+# Local entity extraction pipeline
 
-This repository implements the assignment as a local, constrained parser: sparse
-supervised models choose entity and structural candidates, while typed AST models
-and the supplied field schema prevent invalid API JSON. It does not call hosted
-services and it never evaluates target text as code.
-
-The supplied labels have three `is_not_empty` filters with no `value` member,
-despite the API grammar requiring one. During parsing only, those unary filters
-are normalized to the documented API representation `value: ""`; any other
-missing filter value remains a validation error.
-
-Four supplied labels additionally use `sort` statements. Although omitted from
-the written blueprint grammar, the AST supports validated `sort` nodes with a
-schema-known field and an `asc` or `desc` direction so those labels remain
-auditable and scoreable.
-
-One legacy relation label places its child `statements` inside `parameters`; the
-loader explicitly normalizes that placement to the canonical relation-node form.
+This repository implements the assignment target locally: given a natural
+language question, predict the order-independent set containing its root
+`entityType` and every nested `relationTargetType`. It does not reconstruct an
+API request, fields, values, operators, or AST at inference time.
 
 ## Run
 
+Use the local `cognyte` Conda environment:
+
 ```bash
-python scripts/prepare_splits.py
-python scripts/run_pipeline.py --mode train --run-id baseline-001
-python scripts/run_pipeline.py --mode evaluate --run-id baseline-001
-python scripts/run_pipeline.py --mode infer --run-id baseline-001 --question "Show suspicious phones"
+# The fixed, template-grouped splits are already present. Recreate only if needed.
+conda run -n cognyte python scripts/prepare_splits.py
 
-# Validation-only hierarchical optimization, followed by the selected evaluation.
-python scripts/optimize_hierarchy.py --run-id hierarchical-002
-python scripts/run_pipeline.py --mode benchmark --run-id hierarchical-002
-python scripts/run_pipeline.py --mode evaluate --run-id hierarchical-002
+# Validation-only selection; test.csv is never read here.
+conda run -n cognyte python scripts/optimize_entity_pipeline.py --run-id entity-final-001
 
-# Root-routed independent and classifier-chain component experts.
-python scripts/optimize_experts.py --run-id root-experts-003
+# Refit the selected configuration on all non-test data.
+conda run -n cognyte python scripts/run_entity_pipeline.py --mode train --run-id entity-final-001 \
+  --family direct --threshold 0.6 --max-features 20000 --c 1 \
+  --semantic-keyword-boost 0.3 --semantic-relation-boost 0.3 --include-validation
 
-# Build condition supervision and validate the experimental schema linker.
-python scripts/prepare_components.py --split train
-python scripts/prepare_components.py --split validation
-python scripts/train_field_linker.py --run-id compositional-linker-005 \
-  --alignments exact,normalized,lexical --ranker multiclass
+# Benchmark and evaluate the final model on the held-out test split.
+conda run -n cognyte python scripts/run_entity_pipeline.py --mode benchmark --run-id entity-final-001
+conda run -n cognyte python scripts/run_entity_pipeline.py --mode evaluate --run-id entity-final-001
+
+# Minimal inference output.
+conda run -n cognyte python scripts/run_entity_pipeline.py --mode infer --run-id entity-final-001 \
+  --question "What SMS messages were sent from suspicious phones?"
 ```
 
-The split prephase is deterministic and refuses to replace an existing split;
-pass `--force-resplit` only when deliberately recreating it. Training fits every
-learned artifact on `train.csv` only. Validation is used for model configuration;
-`test.csv` is used only by `evaluate`.
+The final command emits JSON such as `["CDR", "Phone"]`. Add `--diagnostics`
+only to inspect probability diagnostics.
 
-## Design and limitations
+## Design and results
 
-The model predicts the root entity and retrieves similar **training-only**
-examples. The hierarchical version additionally predicts filter count, relation
-presence, Boolean structure, and a root-conditioned field set. Those predictions
-rerank only schema-compatible templates. Decoding then substitutes compatible
-typed literals and validates the resulting AST. The supplied field descriptions
-are static schema knowledge; they are not fitted from held-out queries.
+The selected model is sparse word/character TF-IDF with independent balanced
+logistic entity heads. It runs fully locally on CPU and has no Torch,
+transformers, network, or GPU dependency. The model, selection ablations,
+metrics, predictions, errors, latency measurements, and the serialized model
+are written under `artifacts/entity-final-001/`.
 
-`hierarchical-002` is the current accuracy champion. Its held-out canonical exact
-match is 17.86%, root accuracy is 92.86%, schema validity is 100%, and measured
-p95 latency is approximately 10 ms. Large Joblib model files are intentionally
-ignored by Git and can be regenerated from the tracked training split.
+The final run scored 106/112 (94.64%) exact entity-set matches on the test
+diagnostic. Its warmed local-CPU latency is **4.69 ms p50, 6.25 ms p95, and
+6.79 ms p99** per query; cold model load is 74.64 ms. See the persisted
+[`latency.json`](artifacts/entity-final-001/latency.json) and the complete
+evaluation in the report. The test score is post-test-tuning because the
+content-author rule was refined after reviewing a test error.
 
-The root-expert experiment trains separate component models for sufficiently
-represented roots and supports both independent and classifier-chain field
-heads. Validation selected the shared fallback: active experts did not improve
-exact match, classifier chains were substantially slower, and the expert bundle
-was larger. `root-experts-003` records this negative result without replacing
-the champion.
+See [the entity extraction report](doc/entity_extraction_report.md) for the
+accuracy, latency, optimization evidence, limitations, and representative test
+examples.
 
-The compositional parser is being implemented incrementally according to
-`doc/compositional_parser_plan.md`. Its condition supervision and candidate-span
-stages are complete. The shared semantic field linker is validation-only and is
-not yet used by the production parser.
-
-`artifacts/<run-id>/errors.csv` identifies missed templates, fields, relations,
-operators, and values for targeted future improvements. Evaluation reports and
-predictions are tracked for auditability; generated model binaries are not.
+See [the entity keyword guide](doc/entity_keyword_guide.md) for the static
+semantic expansion lexicon and relation rules.

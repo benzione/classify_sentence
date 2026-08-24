@@ -3,16 +3,10 @@
 __pycache__/
 *.py[cod]
 
-# Keep only the incumbent and current champion reports in version control.
+# Keep the reproducible final entity-extraction artifact only.
 artifacts/*
-!artifacts/final-002/
-!artifacts/hierarchical-002/
-!artifacts/root-experts-003/
-!artifacts/compositional-linker-005/
-artifacts/*/models/
-artifacts/*/candidates/
-artifacts/hierarchical-002/predictions/test_determinism_a.csv
-artifacts/hierarchical-002/predictions/test_pre_vectorization.csv
+!artifacts/entity-final-001/
+!artifacts/entity-final-001/**
 
 # Local environments and secrets.
 .env

@@ -1,0 +1,10 @@
+metric,value
+samples,100
+exact_entity_set_match,1.0
+exact_count,100
+weighted_f1,1.0
+hamming_loss,0.0
+sample_jaccard,1.0
+root_entity_accuracy,1.0
+cardinality_accuracy,1.0
+fallback_rate,0.0

@@ -1,8 +1,0 @@
-metric,value
-samples,112
-canonical_exact_match,0.14285714285714285
-root_entity_accuracy,0.9285714285714286
-strict_json_validity,1.0
-schema_validity,1.0
-latency_ms.p50,4.520333000982646
-latency_ms.p95,6.544898000356625

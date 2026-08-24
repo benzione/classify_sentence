@@ -1,0 +1,176 @@
+{
+  "samples": 100,
+  "exact_entity_set_match": 1.0,
+  "exact_count": 100,
+  "micro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "macro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "weighted_f1": 1.0,
+  "hamming_loss": 0.0,
+  "sample_jaccard": 1.0,
+  "root_entity_accuracy": 1.0,
+  "relation_presence": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0
+  },
+  "relation_target": {
+    "rows": 9,
+    "exact_accuracy": 1.0,
+    "micro_f1": 1.0,
+    "macro_f1": 1.0
+  },
+  "cardinality_accuracy": 1.0,
+  "gold_cardinality": {
+    "1": 91,
+    "2": 9
+  },
+  "predicted_cardinality": {
+    "1": 91,
+    "2": 9
+  },
+  "fallback_rate": 0.0,
+  "by_entity": {
+    "CDR": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 31,
+      "fp": 0,
+      "fn": 0
+    },
+    "EVisa Request": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    "Insight": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8,
+      "fp": 0,
+      "fn": 0
+    },
+    "Investigation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 12,
+      "fp": 0,
+      "fn": 0
+    },
+    "Person": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8,
+      "fp": 0,
+      "fn": 0
+    },
+    "Phone": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 19,
+      "fp": 0,
+      "fn": 0
+    },
+    "Report": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 12,
+      "fp": 0,
+      "fn": 0
+    },
+    "Web Activity": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 9,
+      "fp": 0,
+      "fn": 0
+    },
+    "Web Actor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 9,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "by_gold_root": {
+    "CDR": {
+      "samples": 30,
+      "exact_count": 30,
+      "exact_rate": 1.0
+    },
+    "EVisa Request": {
+      "samples": 1,
+      "exact_count": 1,
+      "exact_rate": 1.0
+    },
+    "Insight": {
+      "samples": 8,
+      "exact_count": 8,
+      "exact_rate": 1.0
+    },
+    "Investigation": {
+      "samples": 12,
+      "exact_count": 12,
+      "exact_rate": 1.0
+    },
+    "Person": {
+      "samples": 8,
+      "exact_count": 8,
+      "exact_rate": 1.0
+    },
+    "Phone": {
+      "samples": 17,
+      "exact_count": 17,
+      "exact_rate": 1.0
+    },
+    "Report": {
+      "samples": 12,
+      "exact_count": 12,
+      "exact_rate": 1.0
+    },
+    "Web Activity": {
+      "samples": 8,
+      "exact_count": 8,
+      "exact_rate": 1.0
+    },
+    "Web Actor": {
+      "samples": 4,
+      "exact_count": 4,
+      "exact_rate": 1.0
+    }
+  },
+  "latency_ms": {
+    "p50": 4.687026004830841,
+    "p95": 6.246805998671334,
+    "p99": 6.788414000766352
+  },
+  "deployment": {
+    "cold_model_load_ms": 74.63710400043055,
+    "cold_first_prediction_ms": 4.913984004815575,
+    "serialized_size_bytes": 935798,
+    "peak_rss_bytes": 126537728,
+    "threads": 1,
+    "gpu_used": false,
+    "torch_or_transformers_required": false
+  }
+}

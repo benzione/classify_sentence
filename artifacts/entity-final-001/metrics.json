@@ -1,0 +1,169 @@
+{
+  "evaluate": {
+    "samples": 112,
+    "exact_entity_set_match": 0.9464285714285714,
+    "exact_count": 106,
+    "micro": {
+      "precision": 0.9781021897810219,
+      "recall": 0.9781021897810219,
+      "f1": 0.9781021897810219
+    },
+    "macro": {
+      "precision": 0.9711934156378601,
+      "recall": 0.988095238095238,
+      "f1": 0.9777253668763102
+    },
+    "weighted_f1": 0.9784637102327504,
+    "hamming_loss": 0.005952380952380952,
+    "sample_jaccard": 0.9732142857142857,
+    "root_entity_accuracy": 0.9910714285714286,
+    "relation_presence": {
+      "precision": 0.88,
+      "recall": 0.88,
+      "f1": 0.88,
+      "accuracy": 0.9464285714285714
+    },
+    "relation_target": {
+      "rows": 25,
+      "exact_accuracy": 0.92,
+      "micro_f1": 0.9583333333333334,
+      "macro_f1": 0.75
+    },
+    "cardinality_accuracy": 0.9464285714285714,
+    "gold_cardinality": {
+      "1": 87,
+      "2": 25
+    },
+    "predicted_cardinality": {
+      "1": 87,
+      "2": 25
+    },
+    "fallback_rate": 0.044642857142857144,
+    "by_entity": {
+      "CDR": {
+        "precision": 1.0,
+        "recall": 0.8928571428571429,
+        "f1": 0.9433962264150944,
+        "support": 28,
+        "fp": 0,
+        "fn": 3
+      },
+      "EVisa Request": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "Insight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "Investigation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "Person": {
+        "precision": 0.7777777777777778,
+        "recall": 1.0,
+        "f1": 0.875,
+        "support": 7,
+        "fp": 2,
+        "fn": 0
+      },
+      "Phone": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22,
+        "fp": 0,
+        "fn": 0
+      },
+      "Report": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 13,
+        "fp": 0,
+        "fn": 0
+      },
+      "Web Activity": {
+        "precision": 0.9629629629629629,
+        "recall": 1.0,
+        "f1": 0.9811320754716981,
+        "support": 26,
+        "fp": 1,
+        "fn": 0
+      },
+      "Web Actor": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 25,
+        "fp": 0,
+        "fn": 0
+      }
+    },
+    "by_gold_root": {
+      "CDR": {
+        "samples": 26,
+        "exact_count": 25,
+        "exact_rate": 0.9615384615384616
+      },
+      "EVisa Request": {
+        "samples": 1,
+        "exact_count": 1,
+        "exact_rate": 1.0
+      },
+      "Insight": {
+        "samples": 7,
+        "exact_count": 7,
+        "exact_rate": 1.0
+      },
+      "Investigation": {
+        "samples": 8,
+        "exact_count": 8,
+        "exact_rate": 1.0
+      },
+      "Person": {
+        "samples": 7,
+        "exact_count": 7,
+        "exact_rate": 1.0
+      },
+      "Phone": {
+        "samples": 13,
+        "exact_count": 11,
+        "exact_rate": 0.8461538461538461
+      },
+      "Report": {
+        "samples": 13,
+        "exact_count": 13,
+        "exact_rate": 1.0
+      },
+      "Web Activity": {
+        "samples": 24,
+        "exact_count": 24,
+        "exact_rate": 1.0
+      },
+      "Web Actor": {
+        "samples": 13,
+        "exact_count": 10,
+        "exact_rate": 0.7692307692307693
+      }
+    },
+    "latency_ms": {
+      "p50": 4.406703999848105,
+      "p95": 5.03764400491491,
+      "p99": 5.557611999392975
+    }
+  }
+}

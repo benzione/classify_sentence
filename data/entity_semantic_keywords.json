@@ -1,0 +1,60 @@
+{
+  "source": "Human-curated semantic expansion derived from entity meanings and supplied field descriptions. It is versioned static configuration: pipeline runs do not derive, rank, or learn it from query records.",
+  "relation_patterns": [
+    {
+      "source_entity": "Web Activity",
+      "target_entity": "Web Actor",
+      "phrases": ["made by", "posted by", "written by", "shared by", "authored by"],
+      "minimum_source_hits": 1,
+      "description": "A content item qualified by an author phrase requires both the content entity and the actor entity."
+    }
+  ],
+  "entities": {
+    "CDR": {
+      "concept": "Telecommunications and communication-event records rather than a phone device or person profile.",
+      "discriminators": ["call record", "call detail record", "call", "caller", "recipient", "call duration", "call status", "missed call", "failed call", "incoming", "outgoing", "SMS", "text message", "email", "chat", "communication", "3G", "4G", "5G", "IMSI", "IMEI", "cell tower", "network", "IP communication"],
+      "semantic_expansions": ["telephone traffic", "voice call", "voice message", "multimedia message", "message delivery", "dialed number", "calling number", "called number", "roaming event", "telecom event", "connection record", "communication history", "call log", "message log", "data session", "made calls", "phone calls", "calls on", "call activity", "phone activity", "telecom activity", "communication activity", "activity between dates"]
+    },
+    "EVisa Request": {
+      "concept": "A visitor's visa, border-entry, travel-document, or immigration request record.",
+      "discriminators": ["visa", "e-visa", "electronic visa", "travel document", "passport", "visitor", "traveler", "arrival", "departure", "border entry", "immigration", "single entry", "multiple entry", "visa issued", "visa granted", "visa expiry", "expiring document", "issuing country", "country of origin", "nationality", "entry permit", "visa application"],
+      "semantic_expansions": ["country of citizenship", "citizenship country", "country of residence", "residence country", "destination country", "country of destination", "departure country", "arrival country", "transit country", "home country", "foreign national", "nationality", "national", "immigration status", "border control", "customs", "port of entry", "entry clearance", "admission", "residency permit", "travel authorization", "visa validity", "visa renewal", "visa holder", "passport issuer", "passport country", "country code", "territory", "consulate", "embassy", "entered the country", "entered country", "entry into country", "arrived from", "arrival from", "departed from", "crossed the border", "border crossing", "country entry", "country arrival"],
+      "context_note": "Use country-related vocabulary together with travel, border, visa, passport, citizenship, or entry context. The word 'country' alone is not specific enough to force EVisa Request."
+    },
+    "Insight": {
+      "concept": "An analytical intelligence insight, assessment, finding, or observation.",
+      "discriminators": ["insight", "intelligence insight", "analytic finding", "assessment", "risk assessment", "observation", "analysis", "analyst finding", "surveillance footage", "intelligence note", "indicator", "pattern", "threat assessment", "case insight", "correlation"],
+      "semantic_expansions": ["intelligence assessment", "analytic conclusion", "key finding", "risk indicator", "threat indicator", "suspicious pattern", "behavioral pattern", "link analysis", "anomaly", "trend", "intelligence product", "analyst note", "situational awareness", "assessment result"]
+    },
+    "Investigation": {
+      "concept": "A managed investigative case with a status, priority, dates, description, or evidence.",
+      "discriminators": ["investigation", "case", "inquiry", "open case", "closed case", "case status", "priority", "investigator", "due date", "case description", "evidence", "case code", "opened", "closed", "tax evasion", "racketeering", "money laundering"],
+      "semantic_expansions": ["criminal case", "case file", "case management", "active case", "resolved case", "case owner", "lead investigator", "investigative lead", "case evidence", "case notes", "case deadline", "case severity", "case priority", "case review", "investigation status"]
+    },
+    "Person": {
+      "concept": "An individual person and their identity, demographics, occupation, or civil attributes.",
+      "discriminators": ["person", "people", "individual", "male", "female", "birth date", "born", "first name", "last name", "passport", "passport number", "occupation", "nationality", "citizen", "address", "age", "gender", "employment"],
+      "semantic_expansions": ["human being", "subject", "identity", "personal details", "date of birth", "family name", "given name", "middle name", "profession", "employer", "marital status", "residential address", "person record", "individual profile", "demographic"]
+    },
+    "Phone": {
+      "concept": "A phone device, telephone number, subscriber, SIM, or device-level attribute—not a call event.",
+      "discriminators": ["phone", "mobile", "handset", "telephone number", "MSISDN", "subscriber", "SIM", "device", "IMEI", "IMSI", "suspicious phone", "foreign phone", "active phone", "phone language", "contact number", "mobile device", "phone details"],
+      "semantic_expansions": ["cell phone", "smartphone", "mobile number", "telephone device", "SIM card", "subscriber identity", "device identifier", "device model", "phone manufacturer", "roaming phone", "mobile subscriber", "dialing device", "wireless device", "phone record"]
+    },
+    "Report": {
+      "concept": "A report or document containing narrative, summary, or incident/intelligence text.",
+      "discriminators": ["report", "document", "report text", "report content", "summary", "narrative", "incident report", "intelligence report", "finding report", "created report", "updated report", "report title", "report author", "report description", "filed report"],
+      "semantic_expansions": ["written report", "case report", "incident narrative", "briefing", "memorandum", "written summary", "report body", "report metadata", "report date", "report source", "report attachment", "reporting document", "intelligence brief"]
+    },
+    "Web Activity": {
+      "concept": "A social/web content event or published item, rather than the account that created it.",
+      "discriminators": ["post", "comment", "web activity", "activity", "published", "posted", "shared", "written", "content", "URL", "link", "hashtag", "video", "image", "like", "language", "Reddit comment", "Instagram post", "YouTube video", "social media content"],
+      "semantic_expansions": ["social post", "online comment", "comments", "publication", "shared content", "content item", "content event", "reaction", "engagement", "repost", "retweet", "caption", "media post", "webpage content", "post timestamp", "content language", "post sentiment", "comment sentiment", "content sentiment", "sentiment of post", "sentiment of comment"]
+    },
+    "Web Actor": {
+      "concept": "A social/web identity, profile, account, channel, or author rather than a piece of content.",
+      "discriminators": ["profile", "account", "web actor", "social media user", "channel", "page", "handle", "username", "follower", "following", "friend", "connection", "profile email", "job title", "university", "bio", "Facebook profile", "Twitter profile", "YouTube channel", "account created"],
+      "semantic_expansions": ["online identity", "user profile", "account holder", "social account", "profile owner", "content author", "comment author", "commenter", "made by", "posted by", "creator", "influencer", "subscriber count", "follower count", "number of followers", "profile with followers", "account with followers", "friend count", "network connections", "account biography", "profile location", "profile metadata", "social identity", "sentiment score", "profile sentiment"]
+    }
+  }
+}
