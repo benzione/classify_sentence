@@ -25,10 +25,11 @@ def averaged_prf(y_true: np.ndarray, y_pred: np.ndarray, average: str) -> dict:
     return {"precision": float(precision), "recall": float(recall), "f1": float(f1)}
 
 def evaluate(model: EntityPipeline, rows: list[dict], output: Path) -> dict:
-    predictions, gold_sets, predicted_sets, latencies = [], [], [], []
+    predictions, gold_sets, predicted_sets, latencies, fallback_count = [], [], [], [], 0
     for row in rows:
         start = time.perf_counter(); prediction = model.predict(row["question_raw"]); latencies.append((time.perf_counter()-start)*1000)
         gold, predicted = set(row["entity_labels"]), set(prediction.entities)
+        fallback_count += prediction.fallback_used
         gold_sets.append(gold); predicted_sets.append(predicted)
         predictions.append({"row_id": row["row_id"], "question": row["question_raw"], "gold_entities": json.dumps(sorted(gold)), "predicted_entities": json.dumps(sorted(predicted)), "exact": gold == predicted, "confidence": prediction.confidence, "fallback_used": prediction.fallback_used, "probabilities": json.dumps(prediction.probabilities, sort_keys=True)})
     labels = model.labels
@@ -53,7 +54,7 @@ def evaluate(model: EntityPipeline, rows: list[dict], output: Path) -> dict:
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=predictions[0].keys() if predictions else [], lineterminator="\n"); writer.writeheader(); writer.writerows(predictions)
-    return {"samples": len(rows), "exact_entity_set_match": exact/len(rows) if rows else 0, "exact_count": exact, "micro": averaged_prf(y_true, y_pred, "micro"), "macro": averaged_prf(y_true, y_pred, "macro"), "weighted_f1": float(f1_score(y_true, y_pred, average="weighted", zero_division=0)), "hamming_loss": float(hamming_loss(y_true, y_pred)), "sample_jaccard": float(jaccard_score(y_true, y_pred, average="samples", zero_division=0)), "root_entity_accuracy": root_correct/len(rows) if rows else 0, "relation_presence": {"precision": float(rp), "recall": float(rr), "f1": float(rf), "accuracy": float((rel_true == rel_pred).mean())}, "relation_target": target_metrics, "cardinality_accuracy": sum(len(a)==len(b) for a,b in zip(gold_sets,predicted_sets))/len(rows), "gold_cardinality": dict(Counter(map(len, gold_sets))), "predicted_cardinality": dict(Counter(map(len, predicted_sets))), "fallback_rate": sum(p.fallback_used for p in [model.predict(row["question_raw"]) for row in rows])/len(rows), "by_entity": by_entity, "by_gold_root": by_root, "latency_ms": {"p50": percentile(latencies, 50), "p95": percentile(latencies, 95), "p99": percentile(latencies, 99)}}
+    return {"samples": len(rows), "exact_entity_set_match": exact/len(rows) if rows else 0, "exact_count": exact, "micro": averaged_prf(y_true, y_pred, "micro"), "macro": averaged_prf(y_true, y_pred, "macro"), "weighted_f1": float(f1_score(y_true, y_pred, average="weighted", zero_division=0)), "hamming_loss": float(hamming_loss(y_true, y_pred)), "sample_jaccard": float(jaccard_score(y_true, y_pred, average="samples", zero_division=0)), "root_entity_accuracy": root_correct/len(rows) if rows else 0, "relation_presence": {"precision": float(rp), "recall": float(rr), "f1": float(rf), "accuracy": float((rel_true == rel_pred).mean())}, "relation_target": target_metrics, "cardinality_accuracy": sum(len(a)==len(b) for a,b in zip(gold_sets,predicted_sets))/len(rows), "gold_cardinality": dict(Counter(map(len, gold_sets))), "predicted_cardinality": dict(Counter(map(len, predicted_sets))), "fallback_rate": fallback_count/len(rows), "by_entity": by_entity, "by_gold_root": by_root, "latency_ms": {"p50": percentile(latencies, 50), "p95": percentile(latencies, 95), "p99": percentile(latencies, 99)}}
 
 def write_csv(path: Path, report: dict) -> None:
     with path.open("w", encoding="utf-8", newline="") as stream:

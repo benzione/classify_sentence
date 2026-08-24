@@ -64,9 +64,7 @@ def main() -> None:
     for row in results:
         row["status"] = "accepted: validation/OOF winner" if row is selected else "rejected: lower validation/OOF ranking"
     artifact = ROOT/"artifacts"/args.run_id; artifact.mkdir(parents=True, exist_ok=True)
-    fields = list(results[0]);
-    with (artifact/"ablation_summary.csv").open("w",encoding="utf-8",newline="") as stream:
-        writer=csv.DictWriter(stream,fieldnames=fields,lineterminator="\n"); writer.writeheader(); writer.writerows(results)
+    fields = list(results[0])
     config_dict = json.loads(selected["config"])
     config_dict["word_ngrams"] = tuple(config_dict["word_ngrams"])
     config_dict["char_ngrams"] = tuple(config_dict["char_ngrams"])

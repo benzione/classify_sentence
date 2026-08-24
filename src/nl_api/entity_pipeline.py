@@ -81,14 +81,14 @@ class EntityPipeline:
     def __init__(self, config: EntityConfig, vectorizer: FeatureUnion, labels: list[str], *,
                  direct_heads: _BinaryHeads | None = None, root_model: Any | None = None,
                  presence_model: Any | None = None, target_heads: _BinaryHeads | None = None,
-                 powerset_model: Any | None = None, powerset_classes: list[tuple[str, ...]] | None = None,
+                 powerset_model: Any | None = None,
                  training_row_ids: list[int] | None = None, training_fingerprint: str = "",
                  training_example_count: int = 0, semantic_keywords: dict[str, list[str]] | None = None,
                  semantic_relation_rules: list[dict[str, Any]] | None = None):
         self.config = config; self.vectorizer = vectorizer; self.labels = labels
         self.direct_heads = direct_heads; self.root_model = root_model
         self.presence_model = presence_model; self.target_heads = target_heads
-        self.powerset_model = powerset_model; self.powerset_classes = powerset_classes or []
+        self.powerset_model = powerset_model
         self.training_row_ids = training_row_ids or []; self.training_fingerprint = training_fingerprint
         self.training_example_count = training_example_count
         self.semantic_keywords = semantic_keywords or {}
@@ -112,32 +112,29 @@ class EntityPipeline:
             raise ValueError(f"unsupported entity model family: {config.family}")
         if not rows: raise ValueError("cannot train entity pipeline without rows")
         labels = sorted({label for row in rows for label in row["entity_labels"]})
-        fit_rows = list(rows)
         vectorizer = cls.build_vectorizer(config)
-        matrix = vectorizer.fit_transform([normalize_question(row["question_raw"]) for row in fit_rows])
+        matrix = vectorizer.fit_transform([normalize_question(row["question_raw"]) for row in rows])
         ids = [int(row["row_id"]) for row in rows]
         fingerprint = hashlib.sha256(",".join(map(str, sorted(ids))).encode()).hexdigest()
-        targets = np.asarray([[int(label in row["entity_labels"]) for label in labels] for row in fit_rows], dtype=int)
-        kwargs = dict(training_row_ids=ids, training_fingerprint=fingerprint, training_example_count=len(fit_rows))
-        root_y = [row["root_entity"] for row in fit_rows]
+        targets = np.asarray([[int(label in row["entity_labels"]) for label in labels] for row in rows], dtype=int)
+        kwargs = dict(training_row_ids=ids, training_fingerprint=fingerprint, training_example_count=len(rows))
         semantic_keywords, semantic_relation_rules = _load_semantic_resources(labels)
-        root_model = LogisticRegression(C=config.c, class_weight="balanced" if config.balanced else None,
-                                        max_iter=1000, random_state=config.random_state).fit(matrix, root_y)
         if config.family == "root":
+            root_model = _fit_root_model(matrix, rows, config)
             return cls(config, vectorizer, labels, root_model=root_model, semantic_keywords=semantic_keywords, semantic_relation_rules=semantic_relation_rules, **kwargs)
         if config.family == "direct":
             return cls(config, vectorizer, labels, direct_heads=_BinaryHeads.fit(matrix, targets, labels, config), semantic_keywords=semantic_keywords, semantic_relation_rules=semantic_relation_rules, **kwargs)
         if config.family == "powerset":
             combinations = sorted({tuple(sorted(row["entity_labels"])) for row in rows})
-            encoded = ["\x1f".join(sorted(row["entity_labels"])) for row in fit_rows]
+            encoded = ["\x1f".join(sorted(row["entity_labels"])) for row in rows]
             model = LogisticRegression(C=config.c, class_weight="balanced" if config.balanced else None,
                                        max_iter=1000, random_state=config.random_state).fit(matrix, encoded)
-            return cls(config, vectorizer, labels, powerset_model=model, powerset_classes=combinations, semantic_keywords=semantic_keywords, semantic_relation_rules=semantic_relation_rules, **kwargs)
+            return cls(config, vectorizer, labels, powerset_model=model, semantic_keywords=semantic_keywords, semantic_relation_rules=semantic_relation_rules, **kwargs)
         # Target labels are learned only from recursive relationTargetType columns.
-        target_y = np.asarray([[int(label in row["relation_targets"]) for label in labels] for row in fit_rows], dtype=int)
-        has_relation = np.asarray([int(row["has_relation"]) for row in fit_rows])
+        target_y = np.asarray([[int(label in row["relation_targets"]) for label in labels] for row in rows], dtype=int)
+        has_relation = np.asarray([int(row["has_relation"]) for row in rows])
         presence = _fit_binary(matrix, has_relation, config)
-        return cls(config, vectorizer, labels, root_model=root_model, presence_model=presence,
+        return cls(config, vectorizer, labels, root_model=_fit_root_model(matrix, rows, config), presence_model=presence,
                    target_heads=_BinaryHeads.fit(matrix, target_y, labels, config), semantic_keywords=semantic_keywords, semantic_relation_rules=semantic_relation_rules, **kwargs)
 
     def predict(self, question: str) -> EntityPrediction:
@@ -233,6 +230,15 @@ def _fit_binary(matrix: Any, labels: np.ndarray, config: EntityConfig) -> Any:
     if len(np.unique(labels)) == 1: model: Any = DummyClassifier(strategy="constant", constant=int(labels[0]))
     else: model = LogisticRegression(C=config.c, class_weight="balanced" if config.balanced else None, max_iter=1000, random_state=config.random_state)
     return model.fit(matrix, labels)
+
+
+def _fit_root_model(matrix: Any, rows: list[dict[str, Any]], config: EntityConfig) -> LogisticRegression:
+    return LogisticRegression(
+        C=config.c,
+        class_weight="balanced" if config.balanced else None,
+        max_iter=1000,
+        random_state=config.random_state,
+    ).fit(matrix, [row["root_entity"] for row in rows])
 
 
 def _positive_probability(model: Any, matrix: Any) -> np.ndarray:
