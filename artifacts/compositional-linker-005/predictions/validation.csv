@@ -1,0 +1,212 @@
+row_id,condition_index,root_entity,scope,span_text,gold_field,predicted_field,top3,correct
+5,0,Phone,"[""Phone""]",1 December 2023,ifc.ootb.Participant.lastActiveDate,ifc.ootb.Participant.lastActiveDate,"[""ifc.ootb.Participant.lastActiveDate"", ""ifc.ootb.Participant.firstActiveDate"", ""ifc.Phone.type""]",True
+8,1,Web Activity,"[""Web Activity""]",Tesla,ifc.ootb.WebActivity.text,ifc.ootb.Orbis.hashtags,"[""ifc.ootb.Orbis.hashtags"", ""ifc.ootb.WebActivity.numberShares"", ""ifc.ootb.WebActivity.numberOfLikes""]",False
+8,2,Web Activity,"[""Web Actor""]",500,ifc.ootb.WebActor.numberOfFriends,ifc.ootb.WebActor.numberActivities,"[""ifc.ootb.WebActor.numberActivities"", ""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.numberOfFollowing""]",False
+12,0,Report,"[""Report""]",John Smith,text,text,"[""text"", ""ifc.core.updatetime"", ""ifc.core.createtime""]",True
+12,1,Report,"[""Report""]",Jane Doe,text,text,"[""text"", ""ifc.core.updatetime"", ""ifc.core.createtime""]",True
+26,0,Web Actor,"[""Web Actor""]",Instagram,ifc.ootb.Orbis.platform,ifc.ootb.WebActor.numberOfFollowers,"[""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.lastName"", ""ifc.ootb.WebActor.homepage""]",False
+26,2,Web Actor,"[""Web Actor""]",100,ifc.ootb.WebActor.numberOfFollowers,ifc.ootb.WebActor.numberOfFollowers,"[""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.numberPagesLiked"", ""ifc.ootb.WebActor.numberOfFollowing""]",True
+50,0,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+50,1,CDR,"[""CDR""]",4G,ifc.ootb.CDR.technology,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.protocol""]",True
+56,0,CDR,"[""CDR""]",jane@company.com,ifc.ootb.CDR.destinationEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",True
+56,2,CDR,"[""CDR""]",john@company.com,ifc.ootb.CDR.originatorEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.isClassified""]",False
+59,0,CDR,"[""CDR""]",5,ifc.ootb.CDR.duration,ifc.ootb.CDR.imsi,"[""ifc.ootb.CDR.imsi"", ""ifc.ootb.CDR.imei"", ""ifc.ootb.CDR.duration""]",False
+59,1,CDR,"[""CDR""]",35699605559871102,ifc.ootb.CDR.imsi2,ifc.ootb.CDR.imsi,"[""ifc.ootb.CDR.imsi"", ""ifc.ootb.CDR.imei"", ""ifc.ootb.CDR.imsi2""]",False
+59,2,CDR,"[""CDR""]",last month,ifc.ootb.CDR.startTime,ifc.ootb.CDR.imsi,"[""ifc.ootb.CDR.imsi"", ""ifc.ootb.CDR.imei"", ""ifc.ootb.CDR.imei2""]",False
+64,0,Insight,"[""Insight""]",surveillance footage,text,text,"[""text"", ""ifc.core.createtime""]",True
+64,1,Insight,"[""Insight""]",security camera video,text,text,"[""text"", ""ifc.core.createtime""]",True
+66,0,Phone,"[""Phone""]",35,ifc.ootb.Phone.IMEI,ifc.ootb.Phone.IMEI,"[""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMSI.objectID""]",True
+68,0,EVisa Request,"[""EVisa Request""]",180,ifc.EVisaRequest.visaDuration,ifc.EVisaRequest.arrivalDate,"[""ifc.EVisaRequest.arrivalDate"", ""ifc.EVisaRequest.documentExpiryDate"", ""ifc.EVisaRequest.visaEntries""]",False
+68,1,EVisa Request,"[""EVisa Request""]",past year,ifc.EVisaRequest.visaIssueDate,ifc.EVisaRequest.arrivalDate,"[""ifc.EVisaRequest.arrivalDate"", ""ifc.EVisaRequest.visaEntries"", ""ifc.EVisaRequest.visaIssueDate""]",False
+70,0,Investigation,"[""Investigation""]",counterfeit goods,ifc.core.description,ifc.core.description,"[""ifc.core.description"", ""ifc.core.state"", ""ifc.core.priority""]",True
+70,1,Investigation,"[""Investigation""]",open,ifc.core.state,ifc.core.state,"[""ifc.core.state"", ""ifc.core.description"", ""ifc.core.priority""]",True
+73,0,Phone,"[""Phone""]",arabic,ifc.ootb.Participant.tlidDominantLanguage,ifc.ootb.Participant.tlidDominantLanguage,"[""ifc.ootb.Participant.tlidDominantLanguage"", ""ifc.ootb.Phone.title"", ""ifc.Phone.type""]",True
+78,0,CDR,"[""CDR""]",successful,ifc.ootb.CDR.callStatus,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType""]",False
+78,1,CDR,"[""CDR""]",0542164185,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType""]",False
+78,2,CDR,"[""CDR""]",1 January 2023,ifc.ootb.CDR.startTime,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType""]",False
+78,4,CDR,"[""Phone""]",Arabic,ifc.ootb.Participant.tlidDominantLanguage,ifc.ootb.Participant.tlidDominantLanguage,"[""ifc.ootb.Participant.tlidDominantLanguage"", ""ifc.ootb.Participant.isTarget"", ""ifc.Phone.type""]",True
+80,0,Person,"[""Person""]",XYZ789,ifc.Person.passport,ifc.Person.passport,"[""ifc.Person.passport"", ""ifc.Person.gender"", ""ifc.Person.birthDate""]",True
+94,0,CDR,"[""CDR""]",XYZ789,ifc.CDR.subcaseCode,ifc.CDR.caseCode,"[""ifc.CDR.caseCode"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.mainLanguage""]",False
+94,1,CDR,"[""CDR""]",spanish,ifc.ootb.CDR.mainLanguage,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.CDR.caseCode"", ""ifc.CDR.subcaseCode""]",True
+94,2,CDR,"[""CDR""]",yesterday,ifc.ootb.CDR.startTime,ifc.CDR.caseCode,"[""ifc.CDR.caseCode"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.mainLanguage""]",False
+98,0,Phone,"[""Phone""]",Spanish,ifc.ootb.Participant.tlidDominantLanguage,ifc.ootb.Participant.tlidDominantLanguage,"[""ifc.ootb.Participant.tlidDominantLanguage"", ""ifc.Phone.type"", ""ifc.ootb.Participant.deviceName""]",True
+98,1,Phone,"[""Phone""]",French,ifc.ootb.Participant.tlidDominantLanguage,ifc.ootb.Participant.tlidDominantLanguage,"[""ifc.ootb.Participant.tlidDominantLanguage"", ""ifc.Phone.type"", ""ifc.ootb.Participant.deviceName""]",True
+102,0,Investigation,"[""Investigation""]",wire transfer,ifc.core.description,ifc.core.description,"[""ifc.core.description"", ""ifc.core.state"", ""ifc.core.priority""]",True
+103,0,CDR,"[""CDR""]",redirected,ifc.ootb.CDR.callStatus,ifc.ootb.CDR.orignatorNetworkName,"[""ifc.ootb.CDR.orignatorNetworkName"", ""ifc.ootb.CDR.callStatus"", ""ifc.CDR.interceptionCriteria""]",False
+103,1,CDR,"[""CDR""]",past 6 days,ifc.ootb.CDR.startTime,ifc.ootb.CDR.orignatorNetworkName,"[""ifc.ootb.CDR.orignatorNetworkName"", ""ifc.CDR.interceptionCriteria"", ""ifc.CDR.interceptionFilter""]",False
+116,0,CDR,"[""CDR""]",urgent,ifc.CDR.emailSubject,ifc.CDR.emailSubject,"[""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress""]",True
+116,1,CDR,"[""CDR""]",yesterday,ifc.ootb.CDR.createDateTime,ifc.CDR.emailSubject,"[""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress""]",False
+116,3,CDR,"[""CDR""]",john@gmail.com,ifc.ootb.CDR.originatorEmailAddress,ifc.CDR.emailSubject,"[""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress""]",False
+116,4,CDR,"[""CDR""]",sarah@outlook.com,ifc.ootb.CDR.originatorEmailAddress,ifc.CDR.emailSubject,"[""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress""]",False
+117,0,CDR,"[""CDR""]",SMPP,ifc.ootb.CDR.smsProtocol,ifc.ootb.CDR.smsType,"[""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsProtocol""]",False
+117,1,CDR,"[""CDR""]",past 24 hours,ifc.ootb.CDR.startTime,ifc.ootb.CDR.smsType,"[""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.startTime""]",False
+119,0,Web Actor,"[""Web Actor""]",Stanford University,ifc.ootb.WebActor.educationalInstitution,ifc.ootb.WebActor.educationalInstitution,"[""ifc.ootb.WebActor.educationalInstitution"", ""ifc.ootb.WebActor.leadingEmail"", ""ifc.ootb.WebActor.jobCompanyName""]",True
+134,0,Web Activity,"[""Web Activity""]",positive,ifc.ootb.WebActivity.sentiment,ifc.ootb.WebActivity.sentiment,"[""ifc.ootb.WebActivity.sentiment"", ""ifc.ootb.WebActivity.sentimentScore"", ""ifc.ootb.WebActivity.numberShares""]",True
+134,1,Web Activity,"[""Web Activity""]",0.8,ifc.ootb.WebActivity.sentimentScore,ifc.ootb.WebActivity.sentimentScore,"[""ifc.ootb.WebActivity.sentimentScore"", ""ifc.ootb.WebActivity.sentiment"", ""ifc.ootb.WebActivity.numberShares""]",True
+134,2,Web Activity,"[""Web Actor""]",1000,ifc.ootb.WebActor.numberOfFollowing,ifc.ootb.WebActor.sentimentScore,"[""ifc.ootb.WebActor.sentimentScore"", ""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.numberOfFollowing""]",False
+169,0,Person,"[""Person""]",1 January 1980 and 31 December 1989,ifc.Person.birthDate,ifc.Person.birthDate,"[""ifc.Person.birthDate"", ""ifc.Person.lastName"", ""ifc.Person.firstName""]",True
+169,1,Person,"[""Person""]",Smith,ifc.Person.lastName,ifc.Person.birthDate,"[""ifc.Person.birthDate"", ""ifc.Person.lastName"", ""ifc.Person.firstName""]",False
+170,0,CDR,"[""CDR""]",past week,ifc.ootb.CDR.createDateTime,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.CDR.emailSubject""]",False
+170,1,CDR,"[""CDR""]",ariel042cohen@gmail,ifc.ootb.CDR.originatorEmailAddress,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.CDR.emailSubject""]",True
+170,2,CDR,"[""CDR""]",ariel042cohen@gmail,ifc.ootb.CDR.destinationEmailAddress,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.CDR.emailSubject""]",False
+180,0,Report,"[""Report""]",ponzi scheme,text,text,"[""text"", ""ifc.core.updatetime"", ""ifc.core.createtime""]",True
+185,0,Phone,"[""Phone""]",mobile,ifc.Phone.type,ifc.ootb.Phone.IMSI,"[""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Participant.deviceName""]",False
+185,1,Phone,"[""Phone""]",310150123456789,ifc.ootb.Phone.IMSI,ifc.ootb.Phone.IMSI,"[""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Phone.IMSI.objectID""]",True
+186,0,Investigation,"[""Investigation""]",open,ifc.core.state,ifc.core.state,"[""ifc.core.state"", ""ifc.core.dueTime"", ""ifc.core.createtime""]",True
+186,1,Investigation,"[""Investigation""]",last month,ifc.core.createtime,ifc.core.state,"[""ifc.core.state"", ""ifc.core.dueTime"", ""ifc.core.createtime""]",False
+191,0,Web Actor,"[""Web Actor""]",LinkedIn,ifc.ootb.Orbis.platform,ifc.ootb.WebActor.jobCompanyName,"[""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.numberOfFollowing""]",False
+191,1,Web Actor,"[""Web Actor""]",last 6 months,ifc.ootb.Orbis.publishDate,ifc.ootb.WebActor.about,"[""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.title""]",False
+191,2,Web Actor,"[""Web Actor""]",data science,ifc.ootb.WebActor.about,ifc.ootb.WebActor.jobCompanyName,"[""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.numberOfFollowing""]",False
+211,0,Phone,"[""Phone""]",John Smith,ifc.ootb.Participant.targetName,ifc.ootb.Participant.targetName,"[""ifc.ootb.Participant.targetName"", ""ifc.ootb.Participant.deviceName"", ""ifc.ootb.Participant.aliasName""]",True
+218,0,CDR,"[""CDR""]",ariel042cohen@gmail.com,ifc.ootb.CDR.destinationEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",True
+218,2,CDR,"[""CDR""]",jane@company.com,ifc.ootb.CDR.originatorEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+218,3,CDR,"[""CDR""]",past 2 weeks,ifc.ootb.CDR.startTime,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+225,0,Report,"[""Report""]",20 March 2024,ifc.core.updatetime,ifc.core.updatetime,"[""ifc.core.updatetime"", ""ifc.core.createtime"", ""text""]",True
+226,0,Web Actor,"[""Web Actor""]",negative,ifc.ootb.WebActor.sentiment,ifc.ootb.WebActor.sentimentScore,"[""ifc.ootb.WebActor.sentimentScore"", ""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.sentiment""]",False
+226,1,Web Actor,"[""Web Activity""]",politics,ifc.ootb.WebActivity.text,ifc.ootb.WebActivity.sentiment,"[""ifc.ootb.WebActivity.sentiment"", ""ifc.ootb.WebActivity.text"", ""ifc.ootb.WebActivity.sentimentScore""]",False
+245,1,Phone,"[""Phone""]",356938035643809,ifc.ootb.Phone.IMEI,ifc.ootb.Phone.IMEI,"[""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMSI.objectID""]",True
+245,2,Phone,"[""Phone""]",490154203237518,ifc.ootb.Phone.IMEI,ifc.ootb.Phone.IMEI,"[""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMSI.objectID""]",True
+248,0,Investigation,"[""Investigation""]",1 January 2024 and 15 March 2024,ifc.core.createtime,ifc.core.dueTime,"[""ifc.core.dueTime"", ""ifc.core.createtime"", ""ifc.core.state""]",False
+263,0,CDR,"[""CDR""]",jane@example.com,ifc.ootb.CDR.destinationEmailAddress,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.destinationEmailAddress""]",False
+263,1,CDR,"[""CDR""]",john@example.com,ifc.ootb.CDR.originatorEmailAddress,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.destinationEmailAddress""]",True
+263,2,CDR,"[""CDR""]",last month,ifc.ootb.CDR.startTime,ifc.CDR.isClassified,"[""ifc.CDR.isClassified"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+264,0,Investigation,"[""Investigation""]",feb 20 2024,ifc.core.dueTime,ifc.core.state,"[""ifc.core.state"", ""ifc.core.dueTime"", ""ifc.core.createtime""]",False
+264,1,Investigation,"[""Investigation""]",closed,ifc.core.state,ifc.core.state,"[""ifc.core.state"", ""ifc.core.dueTime"", ""ifc.core.description""]",True
+269,3,CDR,"[""CDR""]",0527654321,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.CDR.subcaseCode""]",False
+269,4,CDR,"[""CDR""]",0527654321,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.CDR.subcaseCode""]",False
+277,0,Report,"[""Report""]",last week,ifc.core.updatetime,ifc.core.updatetime,"[""ifc.core.updatetime"", ""ifc.core.createtime"", ""text""]",True
+277,1,Report,"[""Report""]",product launch,text,ifc.core.updatetime,"[""ifc.core.updatetime"", ""text"", ""ifc.core.createtime""]",False
+291,1,Insight,"[""Insight""]",drug cartel,text,text,"[""text"", ""ifc.core.createtime""]",True
+293,0,Investigation,"[""Investigation""]",closed,ifc.core.state,ifc.core.state,"[""ifc.core.state"", ""ifc.core.description"", ""ifc.core.priority""]",True
+305,0,Report,"[""Report""]",1 February 2024 and 28 February 2024,ifc.core.updatetime,ifc.core.updatetime,"[""ifc.core.updatetime"", ""ifc.core.createtime"", ""text""]",True
+318,0,Phone,"[""Phone""]",John Doe,ifc.ootb.Participant.aliasName,ifc.ootb.Participant.aliasName,"[""ifc.ootb.Participant.aliasName"", ""ifc.ootb.Participant.targetName"", ""ifc.ootb.Phone.title""]",True
+326,0,Investigation,"[""Investigation""]",10 March 2024,ifc.core.createtime,ifc.core.dueTime,"[""ifc.core.dueTime"", ""ifc.core.state"", ""ifc.core.createtime""]",False
+328,0,CDR,"[""CDR""]",0521234567,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.ipAddress2""]",False
+328,1,CDR,"[""CDR""]",0521234567,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.ipAddress2""]",False
+331,1,CDR,"[""CDR""]",0546222288,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.CDR.emailSubject""]",False
+331,2,CDR,"[""CDR""]",0546222288,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.originatorEmailAddress,"[""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.CDR.emailSubject""]",False
+333,0,Investigation,"[""Investigation""]",last week,ifc.core.createtime,ifc.core.priority,"[""ifc.core.priority"", ""ifc.core.dueTime"", ""ifc.core.state""]",False
+333,1,Investigation,"[""Investigation""]",medium,ifc.core.priority,ifc.core.priority,"[""ifc.core.priority"", ""ifc.core.dueTime"", ""ifc.core.state""]",True
+343,0,Phone,"[""Phone""]",+972543037210,ifc.ootb.Phone.MSISDN,ifc.ootb.Phone.MSISDN,"[""ifc.ootb.Phone.MSISDN"", ""ifc.ootb.Phone.IMSI.objectID"", ""ifc.ootb.Phone.IMEI""]",True
+347,0,Report,"[""Report""]","March 1, 2024",ifc.core.createtime,ifc.core.createtime,"[""ifc.core.createtime"", ""ifc.core.updatetime"", ""text""]",True
+347,1,Report,"[""Report""]","March 15, 2024",ifc.core.createtime,ifc.core.createtime,"[""ifc.core.createtime"", ""ifc.core.updatetime"", ""text""]",True
+356,1,Phone,"[""Phone""]",last 2 weeks,ifc.ootb.Participant.lastActiveDate,ifc.ootb.Participant.lastActiveDate,"[""ifc.ootb.Participant.lastActiveDate"", ""ifc.ootb.Participant.isSuspicious"", ""ifc.ootb.Participant.firstActiveDate""]",True
+362,0,Report,"[""Report""]",XYZ123,text,ifc.core.updatetime,"[""ifc.core.updatetime"", ""text"", ""ifc.core.createtime""]",False
+368,0,Insight,"[""Insight""]",suspicious activity,text,text,"[""text"", ""ifc.core.createtime""]",True
+368,1,Insight,"[""Insight""]",potential threat,text,text,"[""text"", ""ifc.core.createtime""]",True
+371,0,Insight,"[""Insight""]","March 1, 2024 to March 15, 2024",ifc.core.createtime,ifc.core.createtime,"[""ifc.core.createtime"", ""text""]",True
+371,1,Insight,"[""Insight""]",money laundering,text,text,"[""text"", ""ifc.core.createtime""]",True
+374,0,Person,"[""Person""]",lawyer,ifc.Person.occupation,ifc.Person.occupation,"[""ifc.Person.occupation"", ""ifc.Person.lastName"", ""ifc.Person.firstName""]",True
+378,0,CDR,"[""CDR""]",Spanish,ifc.ootb.CDR.mainLanguage,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType""]",True
+378,1,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsText""]",False
+378,2,CDR,"[""CDR""]",past 2 weeks,ifc.ootb.CDR.startTime,ifc.ootb.CDR.mainLanguage,"[""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsText""]",False
+383,0,Person,"[""Person""]",M,ifc.Person.lastName,ifc.Person.lastName,"[""ifc.Person.lastName"", ""ifc.Person.firstName"", ""ifc.Person.gender""]",True
+383,1,Person,"[""Person""]",R,ifc.Person.lastName,ifc.Person.lastName,"[""ifc.Person.lastName"", ""ifc.Person.firstName"", ""ifc.Person.gender""]",True
+392,0,CDR,"[""CDR""]",contract,ifc.CDR.emailSubject,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+392,1,CDR,"[""CDR""]",@client.com,ifc.ootb.CDR.destinationEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",True
+392,2,CDR,"[""CDR""]",@company.com,ifc.ootb.CDR.originatorEmailAddress,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+392,3,CDR,"[""CDR""]",last week,ifc.ootb.CDR.startTime,ifc.ootb.CDR.destinationEmailAddress,"[""ifc.ootb.CDR.destinationEmailAddress"", ""ifc.ootb.CDR.originatorEmailAddress"", ""ifc.CDR.emailSubject""]",False
+395,0,Phone,"[""Phone""]",disposable,ifc.ootb.Participant.aliasName,ifc.ootb.Participant.aliasName,"[""ifc.ootb.Participant.aliasName"", ""ifc.ootb.Phone.title"", ""ifc.ootb.Participant.deviceName""]",True
+409,0,Web Activity,"[""Web Activity""]",Instagram,ifc.ootb.Orbis.platform,ifc.ootb.Orbis.mentions,"[""ifc.ootb.Orbis.mentions"", ""ifc.ootb.WebActivity.text"", ""ifc.ootb.Orbis.publishDate""]",False
+409,2,Web Activity,"[""Web Actor""]",5000,ifc.ootb.WebActor.numberOfFollowers,ifc.ootb.WebActor.numberOfFollowers,"[""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.homepage"", ""ifc.ootb.WebActor.numberActivities""]",True
+412,0,CDR,"[""CDR""]",last 3 days,ifc.ootb.CDR.startTime,ifc.CDR.isClassified,"[""ifc.CDR.isClassified"", ""ifc.ootb.CDR.startTime"", ""ifc.CDR.caseCode""]",False
+412,1,CDR,"[""Phone""]",John,ifc.ootb.Participant.targetName,ifc.ootb.Participant.targetName,"[""ifc.ootb.Participant.targetName"", ""ifc.ootb.Participant.aliasName"", ""ifc.ootb.Participant.isTarget""]",True
+432,0,Phone,"[""Phone""]",Russian,ifc.ootb.Participant.tlidDominantLanguage,ifc.ootb.Participant.tlidDominantLanguage,"[""ifc.ootb.Participant.tlidDominantLanguage"", ""ifc.ootb.Phone.title"", ""ifc.ootb.Participant.deviceName""]",True
+442,0,CDR,"[""CDR""]",binary,ifc.ootb.CDR.smsType,ifc.ootb.CDR.smsType,"[""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.smsText""]",True
+442,2,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsType,"[""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.smsText""]",False
+442,3,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.smsType,"[""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.smsText""]",False
+446,0,Phone,"[""Phone""]",Ariel Cohen,ifc.ootb.Participant.targetName,ifc.ootb.Participant.deviceName,"[""ifc.ootb.Participant.deviceName"", ""ifc.ootb.Participant.targetName"", ""ifc.ootb.Participant.aliasName""]",False
+446,1,Phone,"[""Phone""]",Yossi Levi,ifc.ootb.Participant.targetName,ifc.ootb.Participant.deviceName,"[""ifc.ootb.Participant.deviceName"", ""ifc.ootb.Participant.targetName"", ""ifc.ootb.Participant.aliasName""]",False
+447,0,CDR,"[""CDR""]",suspect,ifc.CDR.interceptionFilter,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.CDR.interceptionFilter"", ""ifc.ootb.CDR.orignatorNetworkName""]",False
+447,2,CDR,"[""CDR""]",past 48 hours,ifc.ootb.CDR.startTime,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.CDR.interceptionFilter"", ""ifc.ootb.CDR.orignatorNetworkName""]",False
+447,3,CDR,"[""CDR""]",voice,ifc.ootb.CDR.type,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.CDR.interceptionFilter"", ""ifc.ootb.CDR.orignatorNetworkName""]",False
+448,0,Report,"[""Report""]","March 1, 2024",ifc.core.updatetime,ifc.core.updatetime,"[""ifc.core.updatetime"", ""ifc.core.createtime"", ""text""]",True
+460,0,Person,"[""Person""]",1 March 2000 and 1 March 2010,ifc.Person.birthDate,ifc.Person.birthDate,"[""ifc.Person.birthDate"", ""ifc.Person.gender"", ""ifc.Person.occupation""]",True
+468,0,CDR,"[""CDR""]",SMPP,ifc.ootb.CDR.smsProtocol,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol""]",False
+468,1,CDR,"[""CDR""]",yesterday,ifc.ootb.CDR.startTime,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol""]",False
+469,0,Investigation,"[""Investigation""]","March 15, 2024",ifc.core.dueTime,ifc.core.dueTime,"[""ifc.core.dueTime"", ""ifc.core.createtime"", ""ifc.core.state""]",True
+474,0,Person,"[""Person""]",John,ifc.Person.firstName,ifc.Person.firstName,"[""ifc.Person.firstName"", ""ifc.Person.lastName"", ""ifc.Person.occupation""]",True
+474,1,Person,"[""Person""]",Jane,ifc.Person.firstName,ifc.Person.firstName,"[""ifc.Person.firstName"", ""ifc.Person.lastName"", ""ifc.Person.occupation""]",True
+484,0,Person,"[""Person""]",1 July 1970,ifc.Person.birthDate,ifc.Person.birthDate,"[""ifc.Person.birthDate"", ""ifc.Person.gender"", ""ifc.Person.occupation""]",True
+484,2,Person,"[""Person""]",Doctor,ifc.Person.occupation,ifc.Person.occupation,"[""ifc.Person.occupation"", ""ifc.Person.birthDate"", ""ifc.Person.gender""]",True
+488,0,Investigation,"[""Investigation""]",past 6 months,ifc.core.createtime,ifc.core.state,"[""ifc.core.state"", ""ifc.core.description"", ""ifc.core.dueTime""]",False
+488,1,Investigation,"[""Investigation""]",tax evasion,ifc.core.description,ifc.core.description,"[""ifc.core.description"", ""ifc.core.state"", ""ifc.core.dueTime""]",True
+494,0,Web Activity,"[""Web Activity""]",Spanish,ifc.ootb.WebActivity.mainLanguage,ifc.ootb.WebActivity.mainLanguage,"[""ifc.ootb.WebActivity.mainLanguage"", ""ifc.ootb.WebActivity.text"", ""ifc.ootb.WebActivity.writerFullName""]",True
+494,1,Web Activity,"[""Web Actor""]",garcia,ifc.ootb.WebActor.leadingEmail,ifc.ootb.WebActor.title,"[""ifc.ootb.WebActor.title"", ""ifc.ootb.WebActor.lastName"", ""ifc.ootb.WebActor.gender""]",False
+511,0,CDR,"[""CDR""]",past week,ifc.ootb.CDR.createDateTime,ifc.ootb.CDR.createDateTime,"[""ifc.ootb.CDR.createDateTime"", ""ifc.ootb.CDR.duration"", ""ifc.ootb.CDR.isAttachment""]",True
+511,2,CDR,"[""CDR""]",+972443325123,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.duration,"[""ifc.ootb.CDR.duration"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+511,3,CDR,"[""CDR""]",+972443325123,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.duration,"[""ifc.ootb.CDR.duration"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+513,0,Insight,"[""Insight""]",financial irregularities,text,text,"[""text"", ""ifc.core.createtime""]",True
+513,1,Insight,"[""Insight""]",money laundering,text,text,"[""text"", ""ifc.core.createtime""]",True
+515,0,CDR,"[""CDR""]",blocked,ifc.ootb.CDR.callStatus,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.direction""]",True
+515,1,CDR,"[""CDR""]",5G,ifc.ootb.CDR.technology,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.direction""]",True
+515,2,CDR,"[""CDR""]",0559876543,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.msisdn""]",False
+515,3,CDR,"[""CDR""]",0559876543,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.technology"", ""ifc.ootb.CDR.msisdn""]",False
+523,0,Insight,"[""Insight""]",Breaking News:,text,text,"[""text"", ""ifc.core.createtime""]",True
+523,1,Insight,"[""Insight""]",Latest Update:,text,text,"[""text"", ""ifc.core.createtime""]",True
+526,0,Web Activity,"[""Web Activity""]",yesterday,ifc.ootb.Orbis.collectDate,ifc.ootb.Orbis.updateDate,"[""ifc.ootb.Orbis.updateDate"", ""ifc.ootb.Orbis.creditCard"", ""ifc.ootb.Orbis.url""]",False
+536,0,Report,"[""Report""]",embezzlement,text,text,"[""text"", ""ifc.core.updatetime"", ""ifc.core.createtime""]",True
+544,1,Web Activity,"[""Web Activity""]",Facebook,ifc.ootb.Orbis.platform,ifc.ootb.Orbis.email,"[""ifc.ootb.Orbis.email"", ""ifc.ootb.Orbis.phone"", ""ifc.ootb.Orbis.creditCard""]",False
+544,2,Web Activity,"[""Web Activity""]",1 March 2024 and 15 March 2024,ifc.ootb.Orbis.publishDate,ifc.ootb.Orbis.email,"[""ifc.ootb.Orbis.email"", ""ifc.ootb.Orbis.phone"", ""ifc.ootb.Orbis.collectDate""]",False
+560,0,Report,"[""Report""]","January 1, 2024 and February 28, 2024",ifc.core.updatetime,ifc.core.updatetime,"[""ifc.core.updatetime"", ""ifc.core.createtime"", ""text""]",True
+587,0,Insight,"[""Insight""]",past month,ifc.core.createtime,text,"[""text"", ""ifc.core.createtime""]",False
+587,1,Insight,"[""Insight""]",firearms,text,text,"[""text"", ""ifc.core.createtime""]",True
+589,0,CDR,"[""CDR""]",TANGO,ifc.CDR.targetCode,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.ootb.CDR.orignatorNetworkName"", ""ifc.ootb.CDR.technology""]",False
+589,1,CDR,"[""CDR""]",last week,ifc.ootb.CDR.startTime,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.createDateTime""]",False
+589,2,CDR,"[""CDR""]",non-call,ifc.ootb.CDR.type,ifc.CDR.interceptionCriteria,"[""ifc.CDR.interceptionCriteria"", ""ifc.ootb.CDR.orignatorNetworkName"", ""ifc.ootb.CDR.callStatus""]",False
+594,0,Phone,"[""Phone""]",foreign,ifc.Phone.type,ifc.ootb.Phone.IMSI,"[""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMEI"", ""ifc.Phone.type""]",False
+594,1,Phone,"[""Phone""]",154646455549799,ifc.ootb.Phone.IMSI,ifc.ootb.Phone.IMSI,"[""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMEI"", ""ifc.Phone.type""]",True
+594,3,Phone,"[""CDR""]",last year,ifc.ootb.CDR.startTime,ifc.ootb.CDR.imsi2,"[""ifc.ootb.CDR.imsi2"", ""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsProtocol""]",False
+597,0,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol""]",False
+597,1,CDR,"[""CDR""]",0506519105,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol""]",False
+597,2,CDR,"[""CDR""]",urgent,ifc.ootb.CDR.smsText,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.CDR.emailSubject"", ""ifc.ootb.CDR.smsType""]",True
+597,3,CDR,"[""CDR""]",last week,ifc.ootb.CDR.startTime,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.ootb.CDR.smsProtocol""]",False
+603,0,Investigation,"[""Investigation""]",past 30 days,ifc.core.dueTime,ifc.core.dueTime,"[""ifc.core.dueTime"", ""ifc.core.createtime"", ""ifc.core.state""]",True
+608,0,CDR,"[""CDR""]",text,ifc.ootb.CDR.type,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText""]",False
+608,1,CDR,"[""CDR""]",payment,ifc.ootb.CDR.smsText,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.mainLanguage""]",False
+608,2,CDR,"[""CDR""]",invoice,ifc.ootb.CDR.smsText,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.mainLanguage"", ""ifc.ootb.CDR.smsText""]",False
+608,3,CDR,"[""CDR""]",0527654321,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+608,4,CDR,"[""CDR""]",0527654321,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+608,5,CDR,"[""CDR""]",0523456789,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+608,6,CDR,"[""CDR""]",0523456789,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.smsProtocol,"[""ifc.ootb.CDR.smsProtocol"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2""]",False
+610,0,Report,"[""Report""]",organized crime syndicate,text,text,"[""text"", ""ifc.core.updatetime"", ""ifc.core.createtime""]",True
+612,0,Web Activity,"[""Web Activity""]",#fitness,ifc.ootb.Orbis.hashtags,ifc.ootb.Orbis.mentions,"[""ifc.ootb.Orbis.mentions"", ""ifc.ootb.Orbis.hashtags"", ""ifc.ootb.Orbis.ipAddress""]",False
+612,1,Web Activity,"[""Web Activity""]",Instagram,ifc.ootb.Orbis.platform,ifc.ootb.Orbis.mentions,"[""ifc.ootb.Orbis.mentions"", ""ifc.ootb.Orbis.hashtags"", ""ifc.ootb.Orbis.ipAddress""]",False
+612,2,Web Activity,"[""Web Activity""]",past 7 days,ifc.ootb.Orbis.publishDate,ifc.ootb.Orbis.mentions,"[""ifc.ootb.Orbis.mentions"", ""ifc.ootb.Orbis.hashtags"", ""ifc.ootb.Orbis.ipAddress""]",False
+625,0,Investigation,"[""Investigation""]",suspicious activity,ifc.core.description,ifc.core.description,"[""ifc.core.description"", ""ifc.core.state"", ""ifc.core.priority""]",True
+630,0,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.msisdn,"[""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2"", ""ifc.ootb.CDR.ipAddress""]",True
+630,1,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.msisdn,"[""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2"", ""ifc.ootb.CDR.ipAddress""]",False
+636,0,Web Activity,"[""Web Activity""]",sale,ifc.ootb.WebActivity.text,ifc.ootb.WebActivity.numberShares,"[""ifc.ootb.WebActivity.numberShares"", ""ifc.ootb.WebActivity.text"", ""ifc.ootb.WebActivity.numberOfLikes""]",False
+636,1,Web Activity,"[""Web Actor""]",10000,ifc.ootb.WebActor.numberOfFollowers,ifc.ootb.WebActor.numberOfFollowers,"[""ifc.ootb.WebActor.numberOfFollowers"", ""ifc.ootb.WebActor.numberActivities"", ""ifc.ootb.WebActor.numberOfFriends""]",True
+642,0,CDR,"[""CDR""]",XYZ123,ifc.CDR.caseCode,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.CDR.caseCode"", ""ifc.ootb.CDR.smsType""]",False
+642,1,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.CDR.caseCode""]",False
+642,2,CDR,"[""CDR""]",smpp,ifc.ootb.CDR.smsProtocol,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.CDR.caseCode""]",False
+642,3,CDR,"[""CDR""]",yesterday,ifc.ootb.CDR.startTime,ifc.ootb.CDR.smsText,"[""ifc.ootb.CDR.smsText"", ""ifc.ootb.CDR.smsType"", ""ifc.CDR.caseCode""]",False
+646,0,Phone,"[""Phone""]",123456789012345,ifc.ootb.Phone.IMSI,ifc.ootb.Phone.IMSI,"[""ifc.ootb.Phone.IMSI"", ""ifc.ootb.Phone.IMEI"", ""ifc.ootb.Phone.IMSI.objectID""]",True
+651,0,CDR,"[""CDR""]",blocked,ifc.ootb.CDR.callStatus,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.direction"", ""ifc.ootb.CDR.orignatorNetworkName""]",True
+651,1,CDR,"[""CDR""]",+16431646,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.direction"", ""ifc.ootb.CDR.msisdn""]",False
+651,2,CDR,"[""CDR""]",+972506655668,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.callStatus,"[""ifc.ootb.CDR.callStatus"", ""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.hasContent""]",False
+656,0,CDR,"[""CDR""]",192.168.1.100,ifc.ootb.CDR.ipAddress,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.CDR.isClassified""]",True
+656,1,CDR,"[""CDR""]",172.16.0.1,ifc.ootb.CDR.ipAddress2,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.CDR.isClassified""]",False
+656,2,CDR,"[""CDR""]",10 March 2024,ifc.ootb.CDR.startTime,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.CDR.isClassified""]",False
+656,3,CDR,"[""CDR""]",web,ifc.ootb.CDR.type,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.CDR.isClassified""]",False
+658,1,CDR,"[""CDR""]",5G,ifc.ootb.CDR.technology,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.msisdn""]",True
+658,2,CDR,"[""CDR""]",0546655668,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.imsi""]",False
+658,3,CDR,"[""CDR""]",0546655668,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.technology,"[""ifc.ootb.CDR.technology"", ""ifc.CDR.subcaseCode"", ""ifc.ootb.CDR.imsi""]",False
+663,0,CDR,"[""CDR""]",20,ifc.ootb.CDR.duration,ifc.ootb.CDR.duration,"[""ifc.ootb.CDR.duration"", ""ifc.CDR.caseCode"", ""ifc.ootb.CDR.direction""]",True
+663,1,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.duration,"[""ifc.ootb.CDR.duration"", ""ifc.ootb.CDR.direction"", ""ifc.ootb.CDR.msisdn""]",False
+663,2,CDR,"[""CDR""]",0543037210,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.duration,"[""ifc.ootb.CDR.duration"", ""ifc.ootb.CDR.direction"", ""ifc.ootb.CDR.msisdn""]",False
+665,0,Investigation,"[""Investigation""]",yesterday,ifc.core.createtime,ifc.core.state,"[""ifc.core.state"", ""ifc.core.description"", ""ifc.core.dueTime""]",False
+671,0,Investigation,"[""Investigation""]",1 June 2024,ifc.core.dueTime,ifc.core.dueTime,"[""ifc.core.dueTime"", ""ifc.core.createtime"", ""ifc.core.state""]",True
+679,0,Insight,"[""Insight""]",yesterday,ifc.core.createtime,text,"[""text"", ""ifc.core.createtime""]",False
+679,1,Insight,"[""Insight""]",drug trafficking,text,text,"[""text"", ""ifc.core.createtime""]",True
+685,0,Web Activity,"[""Web Actor""]",sarah,ifc.ootb.WebActor.firstName,ifc.ootb.WebActor.gender,"[""ifc.ootb.WebActor.gender"", ""ifc.ootb.WebActor.firstName"", ""ifc.ootb.WebActor.numberOfFriends""]",False
+685,1,Web Activity,"[""Web Actor""]",500,ifc.ootb.WebActor.numberOfFriends,ifc.ootb.WebActor.numberOfFriends,"[""ifc.ootb.WebActor.numberOfFriends"", ""ifc.ootb.WebActor.gender"", ""ifc.ootb.WebActor.firstName""]",True
+700,0,Web Actor,"[""Web Actor""]",LinkedIn,ifc.ootb.Orbis.platform,ifc.ootb.WebActor.about,"[""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.title""]",False
+700,1,Web Actor,"[""Web Actor""]",last month,ifc.ootb.Orbis.publishDate,ifc.ootb.WebActor.about,"[""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.birthDate"", ""ifc.ootb.WebActor.title""]",False
+700,2,Web Actor,"[""Web Actor""]",Facebook,ifc.ootb.WebActor.jobCompanyName,ifc.ootb.WebActor.about,"[""ifc.ootb.WebActor.about"", ""ifc.ootb.WebActor.jobCompanyName"", ""ifc.ootb.WebActor.title""]",False
+718,1,CDR,"[""CDR""]",0546222288,ifc.ootb.CDR.msisdn,ifc.ootb.CDR.msisdn,"[""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2"", ""ifc.ootb.CDR.smsType""]",True
+718,2,CDR,"[""CDR""]",0546222288,ifc.ootb.CDR.msisdn2,ifc.ootb.CDR.msisdn,"[""ifc.ootb.CDR.msisdn"", ""ifc.ootb.CDR.msisdn2"", ""ifc.ootb.CDR.smsType""]",False
+725,0,CDR,"[""CDR""]",490154203237518,ifc.ootb.CDR.imei,ifc.ootb.CDR.imei,"[""ifc.ootb.CDR.imei"", ""ifc.ootb.CDR.imei2"", ""ifc.ootb.CDR.imsi""]",True
+738,0,CDR,"[""CDR""]",192.168.0.1,ifc.ootb.CDR.ipAddress,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.ootb.CDR.orignatorNetworkName""]",True
+738,1,CDR,"[""CDR""]",last 72 hours,ifc.ootb.CDR.startTime,ifc.ootb.CDR.ipAddress,"[""ifc.ootb.CDR.ipAddress"", ""ifc.ootb.CDR.ipAddress2"", ""ifc.ootb.CDR.duration""]",False

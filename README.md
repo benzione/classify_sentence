@@ -33,6 +33,12 @@ python scripts/run_pipeline.py --mode evaluate --run-id hierarchical-002
 
 # Root-routed independent and classifier-chain component experts.
 python scripts/optimize_experts.py --run-id root-experts-003
+
+# Build condition supervision and validate the experimental schema linker.
+python scripts/prepare_components.py --split train
+python scripts/prepare_components.py --split validation
+python scripts/train_field_linker.py --run-id compositional-linker-005 \
+  --alignments exact,normalized,lexical --ranker multiclass
 ```
 
 The split prephase is deterministic and refuses to replace an existing split;
@@ -60,6 +66,11 @@ heads. Validation selected the shared fallback: active experts did not improve
 exact match, classifier chains were substantially slower, and the expert bundle
 was larger. `root-experts-003` records this negative result without replacing
 the champion.
+
+The compositional parser is being implemented incrementally according to
+`doc/compositional_parser_plan.md`. Its condition supervision and candidate-span
+stages are complete. The shared semantic field linker is validation-only and is
+not yet used by the production parser.
 
 `artifacts/<run-id>/errors.csv` identifies missed templates, fields, relations,
 operators, and values for targeted future improvements. Evaluation reports and
