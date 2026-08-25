@@ -7,6 +7,8 @@ __pycache__/
 artifacts/*
 !artifacts/entity-final-001/
 !artifacts/entity-final-001/**
+!artifacts/minilm-final-001/
+!artifacts/minilm-final-001/**
 
 # Local environments and secrets.
 .env

@@ -1,0 +1,3 @@
+# Optional, independent MiniLM pipeline. The sparse pipeline needs only requirements.txt.
+torch>=2.2
+sentence-transformers>=3.0

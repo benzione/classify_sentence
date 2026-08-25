@@ -33,6 +33,25 @@ conda run -n cognyte python scripts/run_entity_pipeline.py --mode infer --run-id
 The final command emits JSON such as `["CDR", "Phone"]`. Add `--diagnostics`
 only to inspect probability diagnostics.
 
+## Optional independent MiniLM pipeline
+
+MiniLM is a separate candidate, not a replacement or fallback for the sparse
+pipeline. It uses local `all-MiniLM-L6-v2` sentence embeddings plus its own
+multilabel logistic heads. It needs the optional runtime and a locally cached
+Hugging Face model snapshot:
+
+```bash
+conda run -n cognyte pip install -r requirements-minilm.txt
+HF_HUB_OFFLINE=1 conda run -n cognyte python scripts/optimize_minilm_pipeline.py --run-id minilm-final-001
+HF_HUB_OFFLINE=1 conda run -n cognyte python scripts/run_minilm_pipeline.py --mode train --run-id minilm-final-001 --unweighted --threshold 0.5 --include-validation
+HF_HUB_OFFLINE=1 conda run -n cognyte python scripts/run_minilm_pipeline.py --mode evaluate --run-id minilm-final-001
+HF_HUB_OFFLINE=1 conda run -n cognyte python scripts/run_minilm_pipeline.py --mode benchmark --run-id minilm-final-001
+```
+
+The MiniLM artifact contains its trained heads; the 87 MB encoder snapshot is
+a separately cached runtime dependency. Its artifacts are written to
+`artifacts/minilm-final-001/`.
+
 ## Design and results
 
 The selected model is sparse word/character TF-IDF with independent balanced
@@ -54,3 +73,6 @@ examples.
 
 See [the entity keyword guide](doc/entity_keyword_guide.md) for the static
 semantic expansion lexicon and relation rules.
+
+See [the MiniLM plan and comparison](doc/minilm_pipeline_plan.md) for the
+independent architecture, selection method, and measured KPIs.

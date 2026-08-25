@@ -1,0 +1,122 @@
+{
+  "evaluate": {
+    "samples": 112,
+    "exact_entity_set_match": 0.8392857142857143,
+    "exact_count": 94,
+    "micro": {
+      "precision": 0.9457364341085271,
+      "recall": 0.8905109489051095,
+      "f1": 0.9172932330827067
+    },
+    "macro": {
+      "precision": 0.846931216931217,
+      "recall": 0.8159673659673659,
+      "f1": 0.8304341060095536
+    },
+    "weighted_f1": 0.9134488451045286,
+    "hamming_loss": 0.021825396825396824,
+    "sample_jaccard": 0.9017857142857143,
+    "root_entity_accuracy": 0.9285714285714286,
+    "relation_presence": {
+      "precision": 0.8235294117647058,
+      "recall": 0.56,
+      "f1": 0.6666666666666666,
+      "accuracy": 0.875
+    },
+    "relation_target": {
+      "rows": 25,
+      "exact_accuracy": 0.72,
+      "micro_f1": 0.8372093023255814,
+      "macro_f1": 0.6830357142857143
+    },
+    "cardinality_accuracy": 0.875,
+    "gold_cardinality": {
+      "1": 87,
+      "2": 25
+    },
+    "predicted_cardinality": {
+      "1": 95,
+      "2": 17
+    },
+    "fallback_rate": 0.25,
+    "by_entity": {
+      "CDR": {
+        "precision": 0.8928571428571429,
+        "recall": 0.8928571428571429,
+        "f1": 0.8928571428571429,
+        "support": 28,
+        "fp": 3,
+        "fn": 3
+      },
+      "EVisa Request": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1,
+        "fp": 0,
+        "fn": 1
+      },
+      "Insight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 7,
+        "fp": 0,
+        "fn": 0
+      },
+      "Investigation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 8,
+        "fp": 0,
+        "fn": 0
+      },
+      "Person": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8571428571428571,
+        "f1": 0.8571428571428571,
+        "support": 7,
+        "fp": 1,
+        "fn": 1
+      },
+      "Phone": {
+        "precision": 1.0,
+        "recall": 0.9090909090909091,
+        "f1": 0.9523809523809523,
+        "support": 22,
+        "fp": 0,
+        "fn": 2
+      },
+      "Report": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 13,
+        "fp": 0,
+        "fn": 0
+      },
+      "Web Activity": {
+        "precision": 0.92,
+        "recall": 0.8846153846153846,
+        "f1": 0.9019607843137255,
+        "support": 26,
+        "fp": 2,
+        "fn": 3
+      },
+      "Web Actor": {
+        "precision": 0.9523809523809523,
+        "recall": 0.8,
+        "f1": 0.8695652173913043,
+        "support": 25,
+        "fp": 1,
+        "fn": 5
+      }
+    },
+    "latency_ms": {
+      "p50": 12.92511698557064,
+      "p95": 28.130349004641175,
+      "p99": 32.11243299301714
+    }
+  }
+}
