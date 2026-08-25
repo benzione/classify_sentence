@@ -26,11 +26,6 @@ def test_direct_predict_is_sorted_nonempty_and_serializable(tmp_path):
     assert EntityPipeline.load(path).training_row_ids == [1, 2, 3, 4]
 
 
-def test_hierarchical_handles_constant_relation_target_labels():
-    model = EntityPipeline.train(ROWS, EntityConfig(family="hierarchical", max_features=100))
-    assert model.predict("calls from phones").entities
-
-
 def test_semantic_keyword_hybrid_loads_static_lexicon_and_predicts():
     model = EntityPipeline.train(ROWS, EntityConfig(max_features=100, semantic_keyword_boost=.2, semantic_keyword_filter=True))
     assert "phone" in model.semantic_keywords["Phone"]

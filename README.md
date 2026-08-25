@@ -18,7 +18,7 @@ conda run -n cognyte python scripts/optimize_entity_pipeline.py --run-id entity-
 
 # Refit the selected configuration on all non-test data.
 conda run -n cognyte python scripts/run_entity_pipeline.py --mode train --run-id entity-final-001 \
-  --family direct --threshold 0.6 --max-features 20000 --c 1 \
+  --threshold 0.6 --max-features 20000 --c 1 \
   --semantic-keyword-boost 0.3 --semantic-relation-boost 0.3 --include-validation
 
 # Benchmark and evaluate the final model on the held-out test split.

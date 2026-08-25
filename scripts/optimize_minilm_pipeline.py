@@ -29,7 +29,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("--run-id", default="minilm-001"); parser.add_argument("--device", default="cpu"); args = parser.parse_args()
     train, validation = read_split(ROOT / "data/splits/train.csv"), read_split(ROOT / "data/splits/validation.csv")
     base = MiniLMConfig(device=args.device, batch_size=32)
-    candidates = [("balanced-C0.5-t0.45", replace(base, c=.5, threshold=.45)), ("balanced-C1-t0.5", replace(base, c=1, threshold=.5)), ("balanced-C1-t0.6", replace(base, c=1, threshold=.6)), ("balanced-C2-t0.5", replace(base, c=2, threshold=.5)), ("unweighted-C1-t0.5", replace(base, c=1, threshold=.5, balanced=False))]
+    candidates = [
+        ("unweighted-C1-t0.5", replace(base, c=1, threshold=.5, balanced=False)),
+        ("balanced-C1-t0.6", replace(base, c=1, threshold=.6)),
+        ("balanced-C2-t0.5", replace(base, c=2, threshold=.5)),
+        ("balanced-C1-t0.5", replace(base, c=1, threshold=.5)),
+        ("balanced-C0.5-t0.45", replace(base, c=.5, threshold=.45)),
+    ]
     results = []
     for name, config in candidates:
         model = MiniLMPipeline.train(train, config); validation_exact, ms = score(model, validation); oof = grouped_oof(train, config)

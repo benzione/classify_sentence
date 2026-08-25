@@ -36,27 +36,22 @@ def main() -> None:
     train, validation = read_split(ROOT/"data/splits/train.csv"), read_split(ROOT/"data/splits/validation.csv")
     base = EntityConfig(max_features=20_000, c=1, threshold=.5)
     candidates = [
-        ("A-root-reference", replace(base, family="root")),
-        ("B-direct-10k", replace(base, family="direct", max_features=10_000)),
-        ("B-direct-threshold-0.6", replace(base, family="direct", threshold=.6)),
-        ("B-direct-char-3-6-C2", replace(base, family="direct", char_ngrams=(3,6), c=2)),
-        ("C-hierarchical", replace(base, family="hierarchical")),
-        ("D-label-powerset", replace(base, family="powerset")),
-        ("H-semantic-boost-0.1", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.1)),
-        ("H-semantic-boost-0.2", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.2)),
-        ("H-semantic-boost-0.3", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.3)),
-        ("H-semantic-relation-0.1", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.1)),
-        ("H-semantic-relation-0.2", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.2)),
-        ("H-semantic-relation-0.3", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.3)),
-        ("H-semantic-filter-boost-0.2", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.2, semantic_keyword_filter=True)),
-        ("H-semantic-filter-min2-boost-0.2", replace(base, family="direct", threshold=.6, semantic_keyword_boost=.2, semantic_keyword_filter=True, semantic_keyword_min_hits=2)),
+        ("direct-10k", replace(base, max_features=10_000)),
+        ("direct-threshold-0.6", replace(base, threshold=.6)),
+        ("direct-char-3-6-C2", replace(base, char_ngrams=(3, 6), c=2)),
+        ("semantic-boost-0.1", replace(base, threshold=.6, semantic_keyword_boost=.1)),
+        ("semantic-boost-0.2", replace(base, threshold=.6, semantic_keyword_boost=.2)),
+        ("semantic-boost-0.3", replace(base, threshold=.6, semantic_keyword_boost=.3)),
+        ("semantic-relation-0.1", replace(base, threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.1)),
+        ("semantic-relation-0.2", replace(base, threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.2)),
+        ("semantic-relation-0.3", replace(base, threshold=.6, semantic_keyword_boost=.3, semantic_relation_boost=.3)),
     ]
     results = []
     for name, config in candidates:
         model = EntityPipeline.train(train, config); validation_exact, ms = score(model, validation); oof = oof_score(train, config)
         with tempfile.TemporaryDirectory() as directory:
             temporary = Path(directory) / "entity_pipeline.joblib"; model.dump(temporary); size = temporary.stat().st_size
-        results.append({"candidate": name, "family": config.family, "config": json.dumps(asdict(config), sort_keys=True), "validation_exact_entity_set_match": validation_exact, "train_grouped_oof_exact_entity_set_match": oof, "per_query_ms": ms, "serialized_size_bytes": size})
+        results.append({"candidate": name, "config": json.dumps(asdict(config), sort_keys=True), "validation_exact_entity_set_match": validation_exact, "train_grouped_oof_exact_entity_set_match": oof, "per_query_ms": ms, "serialized_size_bytes": size})
     # Tie-break order is validation exact, OOF exact, then latency.  Persist only
     # the frozen winner; it is the sole model allowed to see the test set later.
     results.sort(key=lambda r: (-r["validation_exact_entity_set_match"], -r["train_grouped_oof_exact_entity_set_match"], r["per_query_ms"]))

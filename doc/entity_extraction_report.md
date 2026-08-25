@@ -70,13 +70,11 @@ training; `test.csv` was not read during that selection.
 
 | Candidate | Validation exact | Grouped OOF exact | Mean batch latency | Model size |
 |---|---:|---:|---:|---:|
-| Root-only reference | 90.18% | 82.69% | 0.133 ms | 863,576 B |
 | Direct logistic, threshold 0.6 | 98.21% | 95.77% | 0.154 ms | 866,281 B |
 | Semantic boost 0.3 | 98.21% | **96.15%** | 0.663 ms | 866,281 B |
 | Relation boost 0.2 + semantic 0.3 | 98.21% | **96.15%** | 0.669 ms | 866,281 B |
 | Relation boost 0.3 + semantic 0.3 | 98.21% | 95.96% | 0.661 ms | 866,281 B |
 | Character 3–6, C=2 | 98.21% | 95.38% | 0.170 ms | 1,080,457 B |
-| Label powerset | 95.54% | 95.77% | 0.143 ms | 963,482 B |
 | Strict keyword filter + boost | 82.14% | 75.19% | 0.675 ms | 866,281 B |
 
 The sparse features preserve low latency and keep the artifact below 1 MB;
